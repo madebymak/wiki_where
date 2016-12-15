@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Header} from './header';
-import {Title} from './title';
-import {Techs} from './techs/techs';
 import {Footer} from './footer';
+import {Questions} from './questions.js';
 
 const styles = {
   container: {
@@ -23,9 +22,8 @@ export class Main extends Component {
       <div style={styles.container}>
         <Header/>
         <main style={styles.main}>
-          <Title/>
-          <Techs/>
-          <p> Hello World! </p>
+          <p> This is the main element </p>
+          <Questions/>
         </main>
         <Footer/>
       </div>
