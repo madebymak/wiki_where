@@ -10,7 +10,7 @@
     "serve:dist": "gulp serve:dist",
     "test:auto": "gulp test:auto"
   },
-  "author": "Graham Lee, Rui-Jia Richard Zhang, Jack Mak",
+  "author": "Graham Lee, Rui-Jia Richard Zhang, Jacky Mak",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.9.1",
