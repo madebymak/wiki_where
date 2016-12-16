@@ -12,7 +12,7 @@ export default class Hint extends React.Component {
 
   render() {
     return ( // eslint-disable-next-line
-      <button type="button" ref={el => this.newHint = el}>
+      <button type="button" ref={el => this.newHint = el} onClick={this.submitHandler}>
         Add Hint
       </button>
     );
