@@ -16,7 +16,31 @@ const styles = {
   }
 };
 
+const MAX_HINT = 3;
+const MAX_QUESTIONS = 5;
+
 export class Main extends Component {
+  constructor(props) {
+    super(props);
+
+    /*
+    the state will contain
+    gameState -> one of 'uninitiated', 'ongoing', 'end'
+    questionList -> [String] of length MAX_HINT
+    answer -> [float, float] representing coordinates
+    questionCount -> int between 0, MAX_QUESTIONS
+    hintCount -> int between 0, MAX_HINT
+    score -> int representing the current score
+    */
+    this.state.data = {
+      gameState: 'uninitiated',
+      questionList: [],
+      answer: [45.0, 45.0],
+      questionCount: 0,
+      hintCount: 0,
+      score: 0
+    }
+  }
   render() {
     return (
       <div style={styles.container}>
