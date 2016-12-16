@@ -3,6 +3,7 @@ import {Header} from './header';
 import {Footer} from './footer';
 import {Questions} from './questions.js';
 import Hint from './hint.js';
+import Renew from './renew.js';
 import {addHint, newQuestion} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
 
 export const MAX_HINT = 3;
@@ -47,6 +48,9 @@ export class Main extends Component {
             />
           <Hint
             addHint={this.addHint}
+            />
+          <Renew
+            newQuestion={this.newQuestion}
             />
         </main>
         <Footer/>
