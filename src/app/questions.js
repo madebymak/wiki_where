@@ -1,17 +1,25 @@
-import React, {Component} from 'react';
-// import parseWikitext from 'txtwiki';
+import React from 'react';
+import Question from './question';
 
-export class Questions extends Component {
-  wikiTextFetch(cityName) {
-    fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${cityName}&prop=revisions&rvprop=content&format=json`);
-  }
-
+export class Questions extends React.Component {
   render() {
+    const questionToRender = (this.props.questionList).slice(0, this.props.hintCount);
+    console.log(questionToRender);
     return (
-      <div>
-        <p> Placeholder message for questions </p>
-      </div>
+      <ul>
+      {questionToRender.map((question, index) =>
+        <Question
+          question={question}
+          key={index}
+          />
+      )
+    }
+      </ul>
     );
   }
 }
 
+Questions.propTypes = {
+  questionList: React.PropTypes.array.isRequired,
+  hintCount: React.PropTypes.number.isRequired
+};
