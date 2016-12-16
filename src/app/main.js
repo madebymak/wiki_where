@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Header} from './header';
 import {Footer} from './footer';
 import {Questions} from './questions.js';
+import Hint from './hint.js';
 import {addHint, newQuestion} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
 
 export const MAX_HINT = 3;
@@ -28,7 +29,7 @@ export class Main extends Component {
       questionList: ['Question 1', 'Question 2', 'Question 3'],
       answer: [45.0, 45.0],
       questionCount: 0,
-      hintCount: 3,
+      hintCount: 0,
       score: 0,
       difficulty: 'easy'
     }};
@@ -43,6 +44,9 @@ export class Main extends Component {
           <Questions
             hintCount={this.state.data.hintCount}
             questionList={this.state.data.questionList}
+            />
+          <Hint
+            addHint={this.addHint}
             />
         </main>
         <Footer/>
