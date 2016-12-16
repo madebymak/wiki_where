@@ -1,0 +1,7 @@
+
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-uses-vars": [2]
+  }
+}
