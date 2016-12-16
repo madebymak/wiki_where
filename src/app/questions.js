@@ -7,10 +7,10 @@ export class Questions extends React.Component {
     console.log(questionToRender);
     return (
       <ul>
-      {questionToRender.map((question, index) =>
+      {questionToRender.map(question =>
         <Question
           question={question}
-          key={index}
+          key={question}
           />
       )
     }
