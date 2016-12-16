@@ -35,8 +35,6 @@ export class Main extends Component {
   }
 
   render() {
-    console.log(this);
-    console.log('!!!!!!!!');
     return (
       <div>
         <Header/>
