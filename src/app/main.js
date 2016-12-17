@@ -22,7 +22,7 @@ export class Main extends Component {
       <div style={styles.container}>
         <Header/>
         <main style={styles.main}>
-          <p> This is the main element </p>
+          <div id="cesiumContainer"></div>
           <Questions/>
         </main>
         <Footer/>

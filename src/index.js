@@ -14,3 +14,12 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
+
+require('cesium/Source/Widgets/widgets.css');
+// const BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
+// BuildModuleUrl.setBaseUrl('./');
+
+const Viewer = require('cesium/Source/Widgets/Viewer/Viewer');
+
+//eslint-disable-next-line
+const viewer = new Viewer('cesiumContainer');

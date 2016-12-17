@@ -7,8 +7,17 @@ const FailPlugin = require('webpack-fail-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+
+  output: {
+    sourcePrefix: ''
+  },
   module: {
+    unknownContextCritical: false,
     loaders: [
+      {
+        test: /\.(png|gif|jpg|jpeg)$/,
+        loader: 'file-loader'
+      },
       {
         test: /.json$/,
         loaders: [
@@ -45,7 +54,8 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     FailPlugin,
     new HtmlWebpackPlugin({
-      template: conf.path.src('index.html')
+      template: conf.path.src('index.html'),
+      inject: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
@@ -63,6 +73,8 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
-    `./${conf.path.src('index')}`
+    `./${conf.path.src('index')}`,
+    // `./${conf.path.src('app/app')}`
+    // './app.js'
   ]
 };
