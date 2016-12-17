@@ -1,5 +1,6 @@
 import {MAX_HINT, MAX_QUESTION} from '../main.js';
 import update from 'immutability-helper';
+import parseWikiResponse from './parser.js';
 
 export function addHint() {
   console.log('Adding a new Hint');
@@ -25,13 +26,17 @@ export function newQuestion(difficulty = 'easy') {
     })
     .then(responseObj => {
       console.log(responseObj.query);
-      console.log(typeof (responseObj));
-      return responseObj();
+      return parseWikiResponse(responseObj);
     })
     .then(parsedString => {
-      const parsedQuestions = parsedString.split('.').slice(0, 4);
+      const parsedQuestions = parsedString.slice(0, 4);
       if (parsedQuestions) {
-        this.setState({data: {questionList: parsedQuestions}});
+        this.setState({
+          data: update(
+            this.state.data,
+            {questionList: {$set: parsedQuestions}},
+            {hintCount: {$set: 0}})
+        });
       }
     });
 }
@@ -56,11 +61,7 @@ function randomCity(difficulty) {
   // eslint-disable-next-line
   return new Promise((resolve, reject) => {
     console.log(difficulty);
-    console.log('placeholder city Uruk');
     resolve('Uruk');
   });
 }
 
-// function parseResponse(responseObj){
-//   const query = responseObj.query.pages
-// }
