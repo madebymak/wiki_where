@@ -1,29 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Question from './question';
 import RaisedButton from 'material-ui/RaisedButton';
-// import parseWikitext from 'txtwiki';
 
-const styles = {
-  container: {
-    border: '1px solid red',
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: '300px',
-    padding: '5px'
-  }
-};
-
-export class Questions extends Component {
-  wikiTextFetch(cityName) {
-    fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${cityName}&prop=revisions&rvprop=content&format=json`);
-  }
-
+export class Questions extends React.Component {
   render() {
+    const questionToRender = (this.props.questionList).slice(0, this.props.hintCount);
+    console.log(questionToRender);
     return (
-      <div style={styles.container} >
-        Round 1 / 5
-        <p> Placeholder message for questions</p>
-        <RaisedButton className="material-btn" label="Hint"/>
-      </div>
+      <ul>
+      {questionToRender.map(question =>
+        <Question
+          question={question}
+          key={question}
+          />
+      )
+    }
+    <RaisedButton className="material-btn" label="Hint"/>
+      </ul>
     );
   }
 }
+
+Questions.propTypes = {
+  questionList: React.PropTypes.array.isRequired,
+  hintCount: React.PropTypes.number.isRequired
+};

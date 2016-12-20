@@ -1,5 +1,5 @@
 {
-  "name": "wiki_globe",
+  "name": "wiki_where",
   "version": "1.0.0",
   "description": "Guess where the city described is on a globe",
   "main": "index.js",
@@ -14,12 +14,15 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.9.1",
+    "bluebird": "^3.4.6",
+    "immutability-helper": "^2.0.0",
     "material-ui": "^0.16.5",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-router": "^2.4.0",
     "react-tap-event-plugin": "^2.0.1",
     "txtwiki": "git+https://github.com/joaomsa/txtwiki.js.git",
+    "underscore": "^1.8.3",
     "webpack": "^2.1.0-beta.27"
   },
   "devDependencies": {
