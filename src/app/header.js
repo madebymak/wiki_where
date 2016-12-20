@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+// import {New} from './new-game.js';
+import RaisedButton from 'material-ui/RaisedButton';
+import New from './new-game.js';
 
 const styles = {
   header: {
@@ -27,6 +30,8 @@ export class Header extends Component {
         <p style={styles.title}>
           Wiki Where
         </p>
+        <RaisedButton className="material-btn-new" label="new game"/>
+        <New/>
       </header>
     );
   }

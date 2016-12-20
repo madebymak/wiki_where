@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 // import parseWikitext from 'txtwiki';
+
+const styles = {
+  container: {
+    border: '1px solid red',
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '300px',
+    padding: '5px'
+  }
+};
 
 export class Questions extends Component {
   wikiTextFetch(cityName) {
@@ -8,10 +19,11 @@ export class Questions extends Component {
 
   render() {
     return (
-      <div>
-        <p> Placeholder message for questions </p>
+      <div style={styles.container} >
+        Round 1 / 5
+        <p> Placeholder message for questions</p>
+        <RaisedButton className="material-btn" label="Hint"/>
       </div>
     );
   }
 }
-
