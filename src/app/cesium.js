@@ -8,7 +8,6 @@ export default class Alkali extends React.Component {
       <div>
         <div id="cesiumContainer"></div>
         <div id="loadingOverlay"><h1>Loading...</h1></div>
-        <div id="toolbar"></div>
       </div>
     );
   }
