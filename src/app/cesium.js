@@ -1,25 +1,17 @@
 import React from 'react';
 
+const Cesium = window.Cesium;
 const cesiumViewerOptions = {
-  animation: false,
-  baseLayerPicker: false,
-  fullscreenButton: false,
-  geocoder: false,
-  homeButton: false,
-  infoBox: false,
-  sceneModePicker: false,
-  selectionIndicator: false,
-  timeline: false,
-  navigationHelpButton: false,
-  navigationInstructionsInitiallyVisible: false,
-  automaticallyTrackDataSourceClocks: false
+  imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
+  })
 };
 
 export default class Alkali extends React.Component {
 
   componentDidMount() {
     // Create the Cesium Viewer
-    this.viewer = new window.Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
+    this.viewer = new Cesium.CesiumWidget('cesiumContainer', cesiumViewerOptions);
   }
 
   render() {
