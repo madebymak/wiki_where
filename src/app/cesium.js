@@ -1,14 +1,25 @@
 import React from 'react';
-// import CesiumWidget from 'cesium/Source/Widgets/CesiumWidget/CesiumWidget';
-import BuildModuleUrl from 'cesium/Source/Core/buildModuleUrl';
-BuildModuleUrl.setBaseUrl('./');
-// import CesiumViewer from 'cesium/Source/Widgets/Viewer/Viewer';
+
+const cesiumViewerOptions = {
+  animation: false,
+  baseLayerPicker: false,
+  fullscreenButton: false,
+  geocoder: false,
+  homeButton: false,
+  infoBox: false,
+  sceneModePicker: false,
+  selectionIndicator: false,
+  timeline: false,
+  navigationHelpButton: false,
+  navigationInstructionsInitiallyVisible: false,
+  automaticallyTrackDataSourceClocks: false
+};
 
 export default class Alkali extends React.Component {
 
   componentDidMount() {
     // Create the Cesium Viewer
-    this.viewer = new window.Cesium.Viewer('cesiumContainer');
+    this.viewer = new window.Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
   }
 
   render() {
