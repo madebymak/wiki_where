@@ -1,5 +1,5 @@
 {
-  "name": "wiki_globe",
+  "name": "wiki_where",
   "version": "1.0.0",
   "description": "Guess where the city described is on a globe",
   "main": "index.js",
