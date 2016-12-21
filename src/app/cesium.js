@@ -26,28 +26,46 @@ export default class Alkali extends React.Component {
     // Create the Cesium Viewer
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
 
-    const scene = this.viewer.scene;
-    const entity = this.viewer.entities.add({
-      label: {
-        show: false
-      }
-    });
+    // const scene = this.viewer.scene;
+    // const entity = this.viewer.entities.add({
+    //   label: {
+    //     show: false
+    //   }
+    // });
 
-    // Mouse over the globe to see the cartographic position
-    const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    handler.setInputAction(movement => {
-      const cartesian = this.viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
-      if (cartesian) {
-        const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-        const longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
-        const latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
-        entity.position = cartesian;
-        entity.label.show = true;
-        entity.label.text = `${longitudeString}, ${latitudeString}`;
-      } else {
-        entity.label.show = false;
+    // // Mouse over the globe to see the cartographic position
+    // const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    // handler.setInputAction(movement => {
+    //   const cartesian = this.viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
+    //   if (cartesian) {
+    //     const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+    //     const longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+    //     const latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+    //     entity.position = cartesian;
+    //     entity.label.show = true;
+    //     entity.label.text = `${longitudeString}, ${latitudeString}`;
+    //   } else {
+    //     entity.label.show = false;
+    //   }
+    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+    this.viewer.entities.add(new Cesium.Entity({
+      position: Cesium.Cartesian3.fromDegrees(-45.0, 45.0),
+      point: {
+        pixelSize: 10,
+        color: Cesium.Color.RED,
+        outlineColor: Cesium.Color.WHITE,
+        outlineWidth: 5
+      },
+      label: {
+        text: 'Answer',
+        font: '14pt monospace',
+        style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+        outlineWidth: 2,
+        verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+        pixelOffset: new Cesium.Cartesian2(0, -15)
       }
-    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    }));
   }
 
   render() {
