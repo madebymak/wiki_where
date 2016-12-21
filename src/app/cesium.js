@@ -50,7 +50,7 @@ export default class Alkali extends React.Component {
     // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
     this.viewer.entities.add(new Cesium.Entity({
-      position: Cesium.Cartesian3.fromDegrees(-45.0, 45.0),
+      position: Cesium.Cartesian3.fromDegrees(this.props.answerCoords[0], this.props.answerCoords[1]),
       point: {
         pixelSize: 10,
         color: Cesium.Color.RED,
@@ -78,3 +78,6 @@ export default class Alkali extends React.Component {
   }
 }
 
+Alkali.propTypes = {
+  answerCoords: React.PropTypes.array.isRequired
+};

@@ -53,7 +53,9 @@ export class Main extends Component {
           <Renew
             newQuestion={this.newQuestion}
             />
-          <Alkali/>
+          <Alkali
+            answerCoords={this.state.data.answer}
+            />
         </main>
         <Footer/>
       </div>
