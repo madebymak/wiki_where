@@ -26,7 +26,7 @@ export default class Alkali extends React.Component {
     // Create the Cesium Viewer
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
 
-    // const scene = this.viewer.scene;
+    const scene = this.viewer.scene;
     // const entity = this.viewer.entities.add({
     //   label: {
     //     show: false
@@ -34,7 +34,11 @@ export default class Alkali extends React.Component {
     // });
 
     // // Mouse over the globe to see the cartographic position
-    // const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    handler.setInputAction(() => {
+      this.viewer.trackedEntity = undefined;
+    }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
     // handler.setInputAction(movement => {
     //   const cartesian = this.viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
     //   if (cartesian) {
