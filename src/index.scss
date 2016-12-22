@@ -36,7 +36,7 @@ a {
 
 .container {
   background-color: transparent;
-  border: 1px solid green;
+  border: 0px solid green;
   height: 100%;
   padding: 10px;
   // position: relative;
@@ -45,15 +45,16 @@ a {
 
 .main {
   background: rgba(0, 0, 0, .5);
-  border: 0px solid blue;
+  border: 1px solid blue;
   border-radius: 8px;
   color: white;
+  align-content: center;
   // min-height: 700px;
   max-height: 700px;
   margin: 10px;
   padding: 10px;
   position: relative;
-  width: 300px;
+  width: 310px;
   z-index: 3;
   overflow: scroll
 }
