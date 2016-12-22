@@ -16,9 +16,14 @@ export class Player extends Component {
   render() {
     return (
       <div style={styles.container}>
-        Player 1<br/>
-        Score: 1, 000, 000 pts
+        Player 1
+        <br/>
+        Score: {this.props.playerScore}
       </div>
     );
   }
 }
+
+Player.propTypes = {
+  playerScore: React.PropTypes.number.isRequired
+};
