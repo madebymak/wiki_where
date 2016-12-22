@@ -16,10 +16,13 @@ function distance(location1, location2) {
 }
 
 export default function scoreAnswer(location1, location2, hintCount) {
+  if (hintCount === 0) {
+    hintCount = 1;
+  }
   const dist = distance(location1, location2);
   let outputScore;
   if (dist < MIN_RADIUS) {
-    outputScore = MIN_RADIUS;
+    outputScore = MAX_SCORE;
   } else {
     outputScore = Math.floor(MAX_SCORE / hintCount * Math.pow(2, -dist / HALF_RATE));
   }
