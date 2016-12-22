@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {Header} from './header';
-import {Footer} from './footer';
-import {Questions} from './questions.js';
-import Hint from './hint.js';
-import Renew from './renew.js';
 import Alkali from './cesium.js';
-import Debug from './debug.js';
-import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
+import {Player} from './player-box.js';
+import {Trivia} from './trivia.js';
+import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js';
 
 export const MAX_HINT = 3;
 export const MAX_QUESTIONS = 5;
@@ -14,59 +11,60 @@ export const MAX_QUESTIONS = 5;
 export class Main extends Component {
   constructor(props) {
     super(props);
-
     /*
     the state will contain
     gameState -> one of 'uninitiated', 'ongoing', 'end'
     questionList -> [String] of length MAX_HINT
-    answer -> [float, float] representing coordinates
-    questionCount -> int between 0, MAX_QUESTIONS
     hintCount -> int between 0, MAX_HINT
     score -> int representing the current score
     difficulty -> one of 'easy', 'hard'
+    answer -> coordinates in the format [longitude, latitude]
+    playerAnswer -> coordiates in the format [longitude, latitude]
+    answerCity -> String of city name
     */
+    this.state = {
+      data: {
+        gameState: 'uninitiated',
+        questionList: ['Question 1', 'Question 2', 'Question 3'],
+        playerAnswer: [0.0, 0.0],
+        answer: [45.0, 45.0],
+        answerCity: 'None',
+        questionCount: 0,
+        hintCount: 0,
+        score: 0,
+        difficulty: 'easy'
+      }
+    };
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
-    this.state = {data: {
-      gameState: 'uninitiated',
-      questionList: ['Question 1', 'Question 2', 'Question 3'],
-      playerAnswer: [],
-      answer: [45.0, 45.0],
-      questionCount: 0,
-      hintCount: 0,
-      score: 0,
-      difficulty: 'easy'
-    }};
   }
 
   render() {
     return (
       <div>
-        <Header/>
-        <main>
-          <Debug
-            answer={this.state.data.answer}
-            playerAnswer={this.state.data.playerAnswer}
-            score={this.state.data.score}
-            />
-          <Questions
-            hintCount={this.state.data.hintCount}
-            questionList={this.state.data.questionList}
-            newQuestion={this.newQuestion}
-            />
-          <Hint
-            addHint={this.addHint}
-            />
-          <Renew
-            newQuestion={this.newQuestion}
-            />
+        <div className="globe">
           <Alkali
             setPlayerAnswerCoords={this.setPlayerAnswerCoords}
             correctAnswerCoords={this.state.data.answer}
             />
-        </main>
-        <Footer/>
+        </div>
+        <div className="header">
+          <Header/>
+        </div>
+        <div className="main row">
+          <div className="col-sm-4">
+            <Player
+              playerScore={this.state.data.score}
+              />
+            <Trivia
+              stateData={this.state.data}
+              addHint={this.addHint}
+              newQuestion={this.newQuestion}
+              setPlayerAnswerCoords={this.setPlayerAnswerCoords}
+              />
+          </div>
+        </div>
       </div>
     );
   }

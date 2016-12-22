@@ -1,12 +1,19 @@
 import React from 'react';
 
+const styles = {
+  container: {
+    border: '0px solid red',
+    marginBottom: '5px'
+  }
+};
+
 export default class Question extends React.Component {
 
   render() {
     return (
-      <li>
+      <div style={styles.container}>
         {this.props.question}
-      </li>
+      </div>
 
     );
   }
