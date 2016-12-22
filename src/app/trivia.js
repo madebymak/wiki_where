@@ -30,9 +30,13 @@ export class Trivia extends Component {
               />
           </div>
         </div>
-        <Hint addHint={this.props.addHint}/>
+        <div className="btn-group">
+          <Hint addHint={this.props.addHint}/>
+          <Renew newQuestion={this.props.newQuestion}/>
+        </div>
+        {/* <Hint addHint={this.props.addHint}/>
         <Renew newQuestion={this.props.newQuestion}/>
-        <br/>
+        <br/> */}
       </div>
     );
   }

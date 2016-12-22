@@ -86,6 +86,12 @@ export default class Alkali extends React.Component {
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
   }
 
+  componentDidUpdate() {
+    const answer = this.viewer.entities.getById('answer');
+    answer.position = Cesium.Cartesian3.fromDegrees(this.props.correctAnswerCoords[0], this.props.correctAnswerCoords[1]);
+    answer.show = true;
+  }
+
   render() {
     // eslint-disable-next-line
     return ( // eslint-disable-next-line
