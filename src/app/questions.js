@@ -1,13 +1,12 @@
 import React from 'react';
 import Question from './question';
-import RaisedButton from 'material-ui/RaisedButton';
 
 export class Questions extends React.Component {
   render() {
     const questionToRender = (this.props.questionList).slice(0, this.props.hintCount);
     console.log(questionToRender);
     return (
-      <ul>
+      <div>
       {questionToRender.map(question =>
         <Question
           question={question}
@@ -15,8 +14,7 @@ export class Questions extends React.Component {
           />
       )
     }
-    <RaisedButton className="material-btn" label="Hint"/>
-      </ul>
+      </div>
     );
   }
 }

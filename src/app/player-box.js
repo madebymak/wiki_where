@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 const styles = {
   container: {
-    border: '1px solid red',
+    border: '0px solid red',
     borderRadius: '6px',
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '300px',
+    minWidth: '200px',
     padding: '10px'
   }
 };

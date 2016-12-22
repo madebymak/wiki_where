@@ -8,8 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const styles = {
   container: {
-    textAlign: 'center',
-    paddingTop: 200
+    textAlign: 'center'
   }
 };
 
@@ -42,7 +41,7 @@ class Main extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="Super Secret Password" onTouchTap={this.handleTouchTap}/>
+          <RaisedButton label="new game" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Dialog With Actions" actions={standardActions} modal={false} open={this.state.open} onRequestClose={this.handleClose}>
           The actions in this window were passed in as an array of React objects.
           </Dialog>

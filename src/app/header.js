@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 // import {New} from './new-game.js';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import New from './new-game.js';
 
 const styles = {
   header: {
     display: 'flex',
-    alignItems: 'center',
-    backgroundColor: '#1f1f1f'
+    alignItems: 'center'
+    // backgroundColor: '#1f1f1f'
   },
   title: {
     flex: 1,
@@ -28,9 +28,9 @@ export class Header extends Component {
     return (
       <header style={styles.header}>
         <p style={styles.title}>
-          Wiki Where
+          <h1>Wiki Where</h1>
         </p>
-        <RaisedButton className="material-btn-new" label="new game"/>
+        {/* <RaisedButton className="material-btn-new" label="new game"/> */}
         <New/>
       </header>
     );
