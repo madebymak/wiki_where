@@ -31,7 +31,7 @@ export class Main extends Component {
     this.state = {data: {
       gameState: 'uninitiated',
       questionList: ['Question 1', 'Question 2', 'Question 3'],
-      playerAnswer: [],
+      playerAnswer: [0.0, 0.0],
       answer: [45.0, 45.0],
       questionCount: 0,
       hintCount: 0,
