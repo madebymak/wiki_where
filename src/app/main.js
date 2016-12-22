@@ -48,7 +48,7 @@ export class Main extends Component {
           <Debug
             answer={this.state.data.answer}
             playerAnswer={this.state.data.playerAnswer}
-            Score={this.state.data.score}
+            score={this.state.data.score}
             />
           <Questions
             hintCount={this.state.data.hintCount}
