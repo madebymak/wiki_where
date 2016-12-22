@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Questions} from './questions.js';
 import Hint from './hint.js';
 import Renew from './renew.js';
-import {addHint, newQuestion} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
+import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
 
 export const MAX_HINT = 3;
 export const MAX_QUESTIONS = 5;
@@ -25,11 +25,15 @@ export class Triva extends Component {
     super(props);
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
+    this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
     this.state = {
       data: {
         gameState: 'uninitiated',
         questionList: [
           'Question 1', 'Question 2', 'Question 3'
+        ],
+        playerAnswer: [
+          0.0, 0.0
         ],
         answer: [
           45.0, 45.0
@@ -48,7 +52,7 @@ export class Triva extends Component {
         <div style={styles.container}>
           Which City?<br/>
           <div>
-            <Questions hintCount={this.state.data.hintCount} questionList={this.state.data.questionList}/>
+            <Questions hintCount={this.state.data.hintCount} questionList={this.state.data.questionList} newQuestion={this.newQuestion}/>
           </div>
         </div>
         <Hint addHint={this.addHint}/>
