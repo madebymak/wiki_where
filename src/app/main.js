@@ -5,6 +5,7 @@ import {Questions} from './questions.js';
 import Hint from './hint.js';
 import Renew from './renew.js';
 import Alkali from './cesium.js';
+import Debug from './debug.js';
 import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
 
 export const MAX_HINT = 3;
@@ -44,10 +45,15 @@ export class Main extends Component {
       <div>
         <Header/>
         <main>
-          <p> This is the main element </p>
+          <Debug
+            answer={this.state.data.answer}
+            playerAnswer={this.state.data.playerAnswer}
+            Score={this.state.data.score}
+            />
           <Questions
             hintCount={this.state.data.hintCount}
             questionList={this.state.data.questionList}
+            newQuestion={this.newQuestion}
             />
           <Hint
             addHint={this.addHint}
