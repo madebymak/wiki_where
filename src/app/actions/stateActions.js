@@ -89,7 +89,7 @@ function googleLocation(cityName) {
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({address: cityName}, (results, status) => {
       if (status === window.google.maps.GeocoderStatus.OK) {
-        const answerLocation = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+        const answerLocation = [results[0].geometry.location.lng(), results[0].geometry.location.lat()];
         resolve(answerLocation);
       } else {
         reject(status);
