@@ -48,8 +48,7 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
     const lastCapital = outputString[outputString.length - 2].match(/[A-Z]/);
     const noSpaceFollow = sentences[i + 1] && sentences[i + 1][0] !== ' ';
     if (lastCapital || noSpaceFollow) {
-      i += 1;
-      addNext(i);
+      moreSentence -= 1;
     }
     if (outputString.length > minLength) {
       moreSentence += 1;
