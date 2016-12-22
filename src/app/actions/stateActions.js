@@ -4,6 +4,12 @@ import parseWikiResponse from './parser.js';
 // import parseWikiLocation from './parseLocation.js';
 const Promise = require('bluebird');
 
+export function setPlayerAnswerCoords(coordinates) {
+  this.setState({
+    data: update(this.state.data, {playerAnswer: {$set: coordinates}})
+  });
+}
+
 export function addHint() {
   console.log('Adding a new Hint');
   console.log(this.state.data);

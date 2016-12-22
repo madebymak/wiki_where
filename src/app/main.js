@@ -5,7 +5,7 @@ import {Questions} from './questions.js';
 import Hint from './hint.js';
 import Renew from './renew.js';
 import Alkali from './cesium.js';
-import {addHint, newQuestion} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
+import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js'; // eslint-disable-line no-unused-vars
 
 export const MAX_HINT = 3;
 export const MAX_QUESTIONS = 5;
@@ -26,9 +26,11 @@ export class Main extends Component {
     */
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
+    this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
     this.state = {data: {
       gameState: 'uninitiated',
       questionList: ['Question 1', 'Question 2', 'Question 3'],
+      playerAnswer: [],
       answer: [45.0, 45.0],
       questionCount: 0,
       hintCount: 0,
@@ -53,7 +55,10 @@ export class Main extends Component {
           <Renew
             newQuestion={this.newQuestion}
             />
-          <Alkali/>
+          <Alkali
+            setPlayerAnswerCoords={this.setPlayerAnswerCoords}
+            correctAnswerCoords={this.state.data.answer}
+            />
         </main>
         <Footer/>
       </div>
