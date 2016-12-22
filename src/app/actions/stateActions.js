@@ -1,12 +1,19 @@
 import {MAX_HINT, MAX_QUESTION} from '../main.js';
 import update from 'immutability-helper';
 import parseWikiResponse from './parser.js';
+import scoreAnswer from './score.js';
 // import parseWikiLocation from './parseLocation.js';
 const Promise = require('bluebird');
 
 export function setPlayerAnswerCoords(coordinates) {
+  const points = scoreAnswer(coordinates, this.state.data.answer, this.state.data.hintCount);
+  console.log('points gained', points);
   this.setState({
-    data: update(this.state.data, {playerAnswer: {$set: coordinates}})
+    data: update(this.state.data,
+      {
+        playerAnswer: {$set: coordinates},
+        score: {$set: this.state.data.score + points}
+      })
   });
 }
 
@@ -58,7 +65,7 @@ export function newQuestion(difficulty = 'easy') {
             this.state.data,
             {
               questionList: {$set: parsedQuestions},
-              hintCount: {$set: 0},
+              hintCount: {$set: 1},
               answer: {$set: answerLocation}
             }
             )
