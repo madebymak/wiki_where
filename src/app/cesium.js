@@ -27,34 +27,24 @@ export default class Alkali extends React.Component {
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
 
     const scene = this.viewer.scene;
-    // const entity = this.viewer.entities.add({
-    //   label: {
-    //     show: false
-    //   }
-    // });
-
-    // // Mouse over the globe to see the cartographic position
     const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+
+    // suppress default double click behaviour
     handler.setInputAction(() => {
       this.viewer.trackedEntity = undefined;
     }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
-    // handler.setInputAction(movement => {
-    //   const cartesian = this.viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
-    //   if (cartesian) {
-    //     const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-    //     const longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
-    //     const latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
-    //     entity.position = cartesian;
-    //     entity.label.show = true;
-    //     entity.label.text = `${longitudeString}, ${latitudeString}`;
-    //   } else {
-    //     entity.label.show = false;
-    //   }
-    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    handler.setInputAction(click => {
+      const position = this.viewer.camera.pickEllipsoid(click.position);
+      const cartographicPosition = Cesium.Ellipsoid.WGS84.cartesianToCartographic(position);
+      const longitude = Cesium.Math.toDegrees(cartographicPosition.longitude);
+      const latitude = Cesium.Math.toDegrees(cartographicPosition.latitude);
+      const coordinates = [longitude, latitude];
+      this.props.setPlayerAnswerCoords(coordinates);
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
     this.viewer.entities.add(new Cesium.Entity({
-      position: Cesium.Cartesian3.fromDegrees(this.props.answerCoords[0], this.props.answerCoords[1]),
+      position: Cesium.Cartesian3.fromDegrees(this.props.correctAnswerCoords[0], this.props.correctAnswerCoords[1]),
       point: {
         pixelSize: 10,
         color: Cesium.Color.RED,
@@ -83,5 +73,7 @@ export default class Alkali extends React.Component {
 }
 
 Alkali.propTypes = {
-  answerCoords: React.PropTypes.array.isRequired
+  correctAnswerCoords: React.PropTypes.array.isRequired,
+  setPlayerAnswerCoords: React.PropTypes.func.isRequired
+
 };
