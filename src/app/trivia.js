@@ -10,9 +10,10 @@ const styles = {
     // display: 'flex',
     // flexDirection: 'column',
     minWidth: '250px',
-    maxHeight: '500px',
+    maxHeight: '600px',
     padding: '10px',
-    overflow: "scroll"
+    overflowX: 'hidden',
+    overflowY: 'auto'
   }
 };
 

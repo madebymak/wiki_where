@@ -65,6 +65,9 @@ export class Main extends Component {
               />
           </div>
         </div>
+        <div>
+          <button>Submit</button>
+        </div>
       </div>
     );
   }
