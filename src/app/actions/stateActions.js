@@ -25,17 +25,25 @@ export function addHint() {
 export function newQuestion(difficulty = 'easy') {
   console.log('fetching new questions');
   let answerLocation;
+  let city;
   if (this.state.data.questionCount >= MAX_QUESTION) {
     return;
   }
 
   return randomCity(difficulty)
     .then(cityName => {
-      googleLocation(cityName)
-        .then(locationResponseObj => {
-          answerLocation = locationResponseObj;
-        });
-      return wikiTextFetch(cityName);
+      city = cityName;
+      return;
+    })
+    .then(() => {
+      return googleLocation(city);
+    })
+    .then(locationResponseObj => {
+      answerLocation = locationResponseObj;
+      return;
+    })
+    .then(() => {
+      return wikiTextFetch(city);
     })
     .then(responseObj => {
       console.log(responseObj.query);
@@ -43,6 +51,7 @@ export function newQuestion(difficulty = 'easy') {
     })
     .then(parsedString => {
       const parsedQuestions = parsedString.slice(0, 4);
+      console.log('at location', answerLocation);
       if (parsedQuestions) {
         this.setState({
           data: update(
@@ -75,11 +84,13 @@ function wikiTextFetch(cityName) {
 }
 
 function googleLocation(cityName) {
+  console.log('locating', cityName);
   return new Promise((resolve, reject) => {
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({address: cityName}, (results, status) => {
       if (status === window.google.maps.GeocoderStatus.OK) {
-        resolve([results[0].geometry.location.lat(), results[0].geometry.location.lng()]);
+        const answerLocation = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+        resolve(answerLocation);
       } else {
         reject(status);
       }
@@ -88,10 +99,13 @@ function googleLocation(cityName) {
 }
 
 function randomCity(difficulty) {
-  // eslint-disable-next-line
-  return new Promise((resolve, reject) => {
-    console.log(difficulty);
-    resolve('Chang\'an');
-  });
+  const easyCities = require('../../assets/easyCity.json');
+  if (difficulty === 'easy') {
+      // eslint-disable-next-line
+    return new Promise((resolve, reject) => {
+      const selectedCity = easyCities[Math.floor(Math.random() * easyCities.length)];
+      resolve(selectedCity);
+    });
+  }
 }
 
