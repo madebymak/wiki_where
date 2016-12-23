@@ -28,6 +28,7 @@ export class Trivia extends Component {
               hintCount={this.props.stateData.hintCount}
               questionList={this.props.stateData.questionList}
               newQuestion={this.props.newQuestion}
+              gameState={this.props.stateData.gameState}
               />
           </div>
         </div>
