@@ -1,7 +1,7 @@
 import {MAX_HINT, MAX_QUESTION} from '../main.js';
 import update from 'immutability-helper';
 import parseWikiResponse from './parser.js';
-import scoreAnswer from './score.js';
+import {distance, distToAnswer} from './score.js';
 const Promise = require('bluebird');
 
 export function setPlayerAnswerCoords(coordinates) {
@@ -71,7 +71,10 @@ export function newQuestion(difficulty = 'easy') {
               questionCount: {$set: this.state.data.questionCount + 1},
               hintCount: {$set: 1},
               answer: {$set: answerLocation},
-              answerCity: {$set: city}
+              answerCity: {$set: city},
+              score: {$set: this.state.data.scoreToAdd + this.state.data.score},
+              scoreToAdd: {$set: 0},
+              currentDistance: {$set: 0}
             }
             )
         });
@@ -96,7 +99,8 @@ export function submitGuess() {
     console.warn("You can't submit answers when the game isn't in progress");
     return;
   }
-  const points = scoreAnswer(this.state.data.playerAnswer, this.state.data.answer, this.state.data.hintCount);
+  const dist = distance(this.state.data.playerAnswer, this.state.data.answer);
+  const points = distToAnswer(dist, this.state.data.hintCount);
   let gameState = 'answered';
   if (this.state.data.questionCount >= MAX_QUESTION) {
     gameState = 'end';
@@ -104,7 +108,8 @@ export function submitGuess() {
   this.setState({
     data: update(this.state.data,
       {
-        score: {$set: this.state.data.score + points},
+        scoreToAdd: {$set: points},
+        currentDistance: {$set: dist},
         gameState: {$set: gameState}
       })
   });
