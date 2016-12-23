@@ -16,6 +16,7 @@ export class Main extends Component {
     the state will contain
     gameState -> one of 'uninitiated', 'initial', 'questioning', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
+    distance -> distance the guess is from the answer, in kilometers
     hintCount -> int between 0, MAX_HINT
     score -> int representing the current score
     difficulty -> one of 'easy', 'hard'
@@ -27,6 +28,8 @@ export class Main extends Component {
       data: {
         gameState: 'uninitiated',
         questionList: ['Question 1', 'Question 2', 'Question 3'],
+        scoreToAdd: 0,
+        currentDistance: 0,
         playerAnswer: [0.0, 0.0],
         answer: [45.0, 45.0],
         answerCity: 'None',
