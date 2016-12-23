@@ -49,9 +49,7 @@ export class Main extends Component {
             correctAnswerCoords={this.state.data.answer}
             />
         </div>
-        <div className="header">
-          <Header/>
-        </div>
+        <Header/>
         <div className="main row">
           <div>
             <Player
@@ -66,7 +64,7 @@ export class Main extends Component {
           </div>
         </div>
         <div>
-          <button>Submit</button>
+          <button className="submit-btn">Submit</button>
         </div>
       </div>
     );

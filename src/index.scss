@@ -34,6 +34,10 @@ a {
   right: 8%
 }
 
+h1 {
+  color: white;
+}
+
 .container {
   background-color: transparent;
   border: 0px solid green;
@@ -87,7 +91,25 @@ a {
   border: 1px solid yellow;
   // height: 50px;
   position: relative;
+  width: 30%;
   z-index: 2
+}
+
+.new-game-btn {
+  top: 5%;
+  right: 2%;
+  // height: 50px;
+  position: absolute;
+  width: 100px;
+  z-index: 2
+}
+
+.submit-btn {
+    bottom: 5%;
+    right: 2%;
+    position: absolute;
+    width: 100px;
+    z-index: 2
 }
 
 #cesiumContainer {
