@@ -5,8 +5,6 @@ import scoreAnswer from './score.js';
 const Promise = require('bluebird');
 
 export function setPlayerAnswerCoords(coordinates) {
-  const points = scoreAnswer(coordinates, this.state.data.answer, this.state.data.hintCount);
-  console.log('points gained', points);
   this.setState({
     data: update(this.state.data,
       {
@@ -74,7 +72,7 @@ export function newQuestion(difficulty = 'easy') {
 }
 
 export function newGame(difficulty = 'easy') {
-  newQuestion(difficulty);
+  console.log(difficulty);
   this.setState({
     data: update(
       this.state.data,
