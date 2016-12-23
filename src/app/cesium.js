@@ -10,14 +10,14 @@ const cesiumViewerOptions = {
   infoBox: false,
   sceneModePicker: false,
   selectionIndicator: false,
+  skyBox: false,
   timeline: false,
   navigationHelpButton: false,
   navigationInstructionsInitiallyVisible: false,
   automaticallyTrackDataSourceClocks: false,
   imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
     url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
-  }),
-  skyBox: false
+  })
 };
 
 export default class Alkali extends React.Component {
@@ -27,6 +27,9 @@ export default class Alkali extends React.Component {
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
 
     const scene = this.viewer.scene;
+    scene.screenSpaceCameraController.minimumZoomDistance = 2000.0;
+    scene.screenSpaceCameraController.maximumZoomDistance = 30000000.0;
+
     const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
 
     this.viewer.entities.add(new Cesium.Entity({
