@@ -23,7 +23,18 @@ import React, {Component} from 'react';
 //   }
 // };
 
+/* eslint-disable */
 export class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.handleNewGame = this.handleNewGame.bind(this);
+  }
+  handleNewGame(e) {
+    e.preventDefault();
+    this.props.newGame();
+    this.props.newQuestion();
+  }
+
   render() {
     return (
       <div>
@@ -31,10 +42,16 @@ export class Header extends Component {
           <h1>Wiki Where</h1>
         </div>
         <div className="new-game-btn">
-          <button>New Game</button>
+          <button type="button" ref={el => this.newGame = el} onClick={this.handleNewGame}>
+            New Game
+          </button>
         </div>
       </div>
 
     );
   }
 }
+
+Header.propTypes = {
+  newGame: React.PropTypes.func.isRequired
+};
