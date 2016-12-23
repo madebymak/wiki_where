@@ -3,7 +3,7 @@ const MIN_RADIUS = 25;
 const DIAMETER = 12742;
 const HALF_RATE = 500;
 
-function distance(location1, location2) {
+export function distance(location1, location2) {
   function degToRad(theta) {
     return theta * 0.017453292519943295;
   }
@@ -15,11 +15,26 @@ function distance(location1, location2) {
   return DIAMETER * Math.asin(Math.sqrt(a));
 }
 
-export default function scoreAnswer(location1, location2, hintCount) {
+export function scoreAnswer(location1, location2, hintCount) {
   if (hintCount === 0) {
     hintCount = 1;
   }
   const dist = distance(location1, location2);
+  return distToAnswer(dist, hintCount);
+
+  // let outputScore;
+  // if (dist < MIN_RADIUS) {
+  //   outputScore = MAX_SCORE;
+  // } else {
+  //   outputScore = Math.floor(MAX_SCORE / hintCount * Math.pow(2, -dist / HALF_RATE));
+  // }
+  // return outputScore;
+}
+
+export function distToAnswer(dist, hintCount) {
+  if (hintCount === 0) {
+    hintCount = 1;
+  }
   let outputScore;
   if (dist < MIN_RADIUS) {
     outputScore = MAX_SCORE;
