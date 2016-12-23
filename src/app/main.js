@@ -36,10 +36,12 @@ export class Main extends Component {
         difficulty: 'easy'
       }
     };
+
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
-    this.submitGuess = submitGuess.bind(this);
+    this.handleGuess = submitGuess.bind(this);
+    this.newGame = newGame.bind(this);
   }
 
   render() {
@@ -51,7 +53,10 @@ export class Main extends Component {
             correctAnswerCoords={this.state.data.answer}
             />
         </div>
-        <Header/>
+        <Header
+          newGame={this.newGame}
+          newQuestion={this.newQuestion}
+          />
         <div className="main row">
           <div>
             <Player
@@ -66,7 +71,9 @@ export class Main extends Component {
           </div>
         </div>
         <div>
-          <button className="submit-btn">Submit</button>
+        {// eslint-disable-next-line}
+          <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
+        }
         </div>
       </div>
     );
