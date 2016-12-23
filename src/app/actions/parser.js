@@ -55,5 +55,5 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
     }
     i += 1;
   }
-  return outputString;
+  return `${outputString.replace(/\.+$/, '')}.`;
 }
