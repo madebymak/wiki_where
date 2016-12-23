@@ -53,7 +53,7 @@ export class Main extends Component {
           <Header/>
         </div>
         <div className="main row">
-          <div className="col-sm-4">
+          <div>
             <Player
               playerScore={this.state.data.score}
               />
@@ -64,6 +64,9 @@ export class Main extends Component {
               setPlayerAnswerCoords={this.setPlayerAnswerCoords}
               />
           </div>
+        </div>
+        <div>
+          <button>Submit</button>
         </div>
       </div>
     );

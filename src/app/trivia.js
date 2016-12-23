@@ -10,9 +10,10 @@ const styles = {
     // display: 'flex',
     // flexDirection: 'column',
     minWidth: '250px',
-    maxHeight: '500px',
+    maxHeight: '600px',
     padding: '10px',
-    overflow: "scroll"
+    overflowX: 'hidden',
+    overflowY: 'auto'
   }
 };
 
@@ -30,9 +31,13 @@ export class Trivia extends Component {
               />
           </div>
         </div>
-        <Hint addHint={this.props.addHint}/>
+        <div className="btn-group">
+          <Hint addHint={this.props.addHint}/>
+          <Renew newQuestion={this.props.newQuestion}/>
+        </div>
+        {/* <Hint addHint={this.props.addHint}/>
         <Renew newQuestion={this.props.newQuestion}/>
-        <br/>
+        <br/> */}
       </div>
     );
   }
