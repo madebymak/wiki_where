@@ -12,7 +12,7 @@ export default class Renew extends React.Component {
 
   render() {
     return ( // eslint-disable-next-line
-      <button className="btn-style" type="button" ref={el => this.newHint = el} onClick={this.submitHandler}>
+      <button type="button" ref={el => this.newHint = el} onClick={this.submitHandler}>
         Refresh
       </button>
     );
