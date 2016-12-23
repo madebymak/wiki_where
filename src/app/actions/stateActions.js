@@ -70,7 +70,8 @@ export function newQuestion(difficulty = 'easy') {
               questionList: {$set: parsedQuestions},
               questionCount: {$set: this.state.data.questionCount + 1},
               hintCount: {$set: 1},
-              answer: {$set: answerLocation}
+              answer: {$set: answerLocation},
+              answerCity: {$set: city}
             }
             )
         });
