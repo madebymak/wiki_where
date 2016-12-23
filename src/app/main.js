@@ -53,6 +53,7 @@ export class Main extends Component {
         <div className="globe">
           <Alkali
             setPlayerAnswerCoords={this.setPlayerAnswerCoords}
+            playerAnswerCoords={this.state.data.playerAnswer}
             correctAnswerCoords={this.state.data.answer}
             gameState={this.state.data.gameState}
             />
