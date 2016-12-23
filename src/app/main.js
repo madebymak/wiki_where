@@ -3,17 +3,18 @@ import {Header} from './header';
 import Alkali from './cesium.js';
 import {Player} from './player-box.js';
 import {Trivia} from './trivia.js';
-import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js';
+//eslint-disable-next-line
+import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess} from './actions/stateActions.js';
 
 export const MAX_HINT = 3;
-export const MAX_QUESTIONS = 5;
+export const MAX_QUESTION = 5;
 
 export class Main extends Component {
   constructor(props) {
     super(props);
     /*
     the state will contain
-    gameState -> one of 'uninitiated', 'questioning', 'answered', 'end'
+    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
     hintCount -> int between 0, MAX_HINT
     score -> int representing the current score
@@ -35,9 +36,12 @@ export class Main extends Component {
         difficulty: 'easy'
       }
     };
+
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
+    this.handleGuess = submitGuess.bind(this);
+    this.newGame = newGame.bind(this);
   }
 
   render() {
@@ -49,9 +53,10 @@ export class Main extends Component {
             correctAnswerCoords={this.state.data.answer}
             />
         </div>
-        <div className="header">
-          <Header/>
-        </div>
+        <Header
+          newGame={this.newGame}
+          newQuestion={this.newQuestion}
+          />
         <div className="main row">
           <div>
             <Player
@@ -66,7 +71,9 @@ export class Main extends Component {
           </div>
         </div>
         <div>
-          <button>Submit</button>
+        {// eslint-disable-next-line}
+          <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
+        }
         </div>
       </div>
     );

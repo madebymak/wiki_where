@@ -5,7 +5,7 @@ export class Questions extends React.Component {
 
   componentWillReceiveProps() {
     console.log("trying", this.props.questionList);
-    if (this.props.questionList.length === 0) {
+    if (this.props.questionList.length === 0 || this.props.gameState === 'initial') {
       console.log("Trying again");
       this.props.newQuestion();
     }
@@ -31,5 +31,6 @@ export class Questions extends React.Component {
 Questions.propTypes = {
   questionList: React.PropTypes.array.isRequired,
   hintCount: React.PropTypes.number.isRequired,
+  gameState: React.PropTypes.string.isRequired,
   newQuestion: React.PropTypes.func.isRequired
 };

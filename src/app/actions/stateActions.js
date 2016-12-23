@@ -2,17 +2,13 @@ import {MAX_HINT, MAX_QUESTION} from '../main.js';
 import update from 'immutability-helper';
 import parseWikiResponse from './parser.js';
 import scoreAnswer from './score.js';
-// import parseWikiLocation from './parseLocation.js';
 const Promise = require('bluebird');
 
 export function setPlayerAnswerCoords(coordinates) {
-  const points = scoreAnswer(coordinates, this.state.data.answer, this.state.data.hintCount);
-  console.log('points gained', points);
   this.setState({
     data: update(this.state.data,
       {
-        playerAnswer: {$set: coordinates},
-        score: {$set: this.state.data.score + points}
+        playerAnswer: {$set: coordinates}
       })
   });
 }
@@ -33,7 +29,13 @@ export function newQuestion(difficulty = 'easy') {
   console.log('fetching new questions');
   let answerLocation;
   let city;
+  console.log(`On the ${this.state.data.questionCount} question`);
   if (this.state.data.questionCount >= MAX_QUESTION) {
+    console.warn(`The game ends at ${MAX_QUESTION} questions`);
+    return;
+  }
+  if (this.state.data.gameState !== 'answered' && this.state.data.gameState !== 'initial') {
+    console.warn(`${this.state.data.gameState} is the wrong game state for adding questions`);
     return;
   }
 
@@ -64,7 +66,9 @@ export function newQuestion(difficulty = 'easy') {
           data: update(
             this.state.data,
             {
+              gameState: {$set: 'questioning'},
               questionList: {$set: parsedQuestions},
+              questionCount: {$set: this.state.data.questionCount + 1},
               hintCount: {$set: 1},
               answer: {$set: answerLocation}
             }
@@ -72,6 +76,37 @@ export function newQuestion(difficulty = 'easy') {
         });
       }
     });
+}
+
+export function newGame(difficulty = 'easy') {
+  console.log(difficulty);
+  this.setState({
+    data: update(
+      this.state.data,
+      {
+        gameState: {$set: 'initial'},
+        questionCount: {$set: 0}
+      })
+  });
+}
+
+export function submitGuess() {
+  if (this.state.data.gameState !== 'questioning') {
+    console.warn("You can't submit answers when the game isn't in progress");
+    return;
+  }
+  const points = scoreAnswer(this.state.data.playerAnswer, this.state.data.answer, this.state.data.hintCount);
+  let gameState = 'answered';
+  if (this.state.data.questionCount >= MAX_QUESTION) {
+    gameState = 'end';
+  }
+  this.setState({
+    data: update(this.state.data,
+      {
+        score: {$set: this.state.data.score + points},
+        gameState: {$set: gameState}
+      })
+  });
 }
 
 function wikiTextFetch(cityName) {

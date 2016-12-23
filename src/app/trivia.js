@@ -5,11 +5,11 @@ import Renew from './renew.js';
 
 const styles = {
   container: {
-    border: '0px solid red',
+    border: '1px solid red',
     borderRadius: '6px',
     // display: 'flex',
     // flexDirection: 'column',
-    minWidth: '250px',
+    // minWidth: '250px',
     maxHeight: '600px',
     padding: '10px',
     overflowX: 'hidden',
@@ -28,6 +28,7 @@ export class Trivia extends Component {
               hintCount={this.props.stateData.hintCount}
               questionList={this.props.stateData.questionList}
               newQuestion={this.props.newQuestion}
+              gameState={this.props.stateData.gameState}
               />
           </div>
         </div>
