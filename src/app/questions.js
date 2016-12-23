@@ -3,7 +3,7 @@ import Question from './question';
 
 export class Questions extends React.Component {
 
-  componentWillReceiveProps() {
+  componentDidUpdate() {
     console.log("trying", this.props.questionList);
     if (this.props.questionList.length === 0 || this.props.gameState === 'initial') {
       console.log("Trying again");
