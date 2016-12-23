@@ -22,6 +22,15 @@ const cesiumViewerOptions = {
 
 export default class Alkali extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {name: ""},
+      onlineUsers: 1,
+      messages: [] // messages coming from the server will be stored here as they arrive
+    };
+  }
+
   componentDidMount() {
     // Create the Cesium Viewer
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
@@ -72,6 +81,16 @@ export default class Alkali extends React.Component {
       }
     }));
 
+    this.viewer.entities.add(new Cesium.Entity({
+      id: 'line',
+      show: false,
+      polyline: {
+        positions: Cesium.Cartesian3.fromDegreesArray([-75, 35, -125, 35]),
+        width: 3,
+        material: Cesium.Color.WHITE
+      }
+    }));
+
     // suppress default double click behaviour
     handler.setInputAction(() => {
       this.viewer.trackedEntity = undefined;
@@ -80,23 +99,30 @@ export default class Alkali extends React.Component {
     handler.setInputAction(click => {
       const position = this.viewer.camera.pickEllipsoid(click.position);
       const cartographicPosition = Cesium.Ellipsoid.WGS84.cartesianToCartographic(position);
-      const longitude = Cesium.Math.toDegrees(cartographicPosition.longitude);
-      const latitude = Cesium.Math.toDegrees(cartographicPosition.latitude);
-      const coordinates = [longitude, latitude];
+      const guessLongitude = Cesium.Math.toDegrees(cartographicPosition.longitude);
+      const guessLatitude = Cesium.Math.toDegrees(cartographicPosition.latitude);
+      const coordinates = [guessLongitude, guessLatitude];
       this.props.setPlayerAnswerCoords(coordinates);
       const guess = this.viewer.entities.getById('guess');
-      guess.position = Cesium.Cartesian3.fromDegrees(longitude, latitude);
+      guess.position = Cesium.Cartesian3.fromDegrees(guessLongitude, guessLatitude);
       guess.show = true;
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
   }
 
   componentDidUpdate() {
     const answer = this.viewer.entities.getById('answer');
+    const line = this.viewer.entities.getById('line');
     if (this.props.gameState === 'answered') {
       answer.position = Cesium.Cartesian3.fromDegrees(this.props.correctAnswerCoords[0], this.props.correctAnswerCoords[1]);
       answer.show = true;
+      line.polyline.positions = Cesium.Cartesian3.fromDegreesArray([
+        this.props.correctAnswerCoords[0], this.props.correctAnswerCoords[1],
+        this.props.playerAnswerCoords[0], this.props.playerAnswerCoords[1]
+      ]);
+      line.show = true;
     } else {
       answer.show = false;
+      line.show = false;
     }
   }
 
@@ -113,5 +139,6 @@ export default class Alkali extends React.Component {
 Alkali.propTypes = {
   correctAnswerCoords: React.PropTypes.array.isRequired,
   setPlayerAnswerCoords: React.PropTypes.func.isRequired,
+  playerAnswerCoords: React.PropTypes.array.isRequired,
   gameState: React.PropTypes.string.isRequired
 };
