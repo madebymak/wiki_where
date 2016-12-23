@@ -3,7 +3,8 @@ import {Header} from './header';
 import Alkali from './cesium.js';
 import {Player} from './player-box.js';
 import {Trivia} from './trivia.js';
-import {addHint, newQuestion, setPlayerAnswerCoords} from './actions/stateActions.js';
+//eslint-disable-next-line
+import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess} from './actions/stateActions.js';
 
 export const MAX_HINT = 3;
 export const MAX_QUESTIONS = 5;
@@ -38,6 +39,7 @@ export class Main extends Component {
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
+    this.submitGuess = submitGuess.bind(this);
   }
 
   render() {

@@ -2,7 +2,6 @@ import {MAX_HINT, MAX_QUESTION} from '../main.js';
 import update from 'immutability-helper';
 import parseWikiResponse from './parser.js';
 import scoreAnswer from './score.js';
-// import parseWikiLocation from './parseLocation.js';
 const Promise = require('bluebird');
 
 export function setPlayerAnswerCoords(coordinates) {
@@ -11,8 +10,7 @@ export function setPlayerAnswerCoords(coordinates) {
   this.setState({
     data: update(this.state.data,
       {
-        playerAnswer: {$set: coordinates},
-        score: {$set: this.state.data.score + points}
+        playerAnswer: {$set: coordinates}
       })
   });
 }
@@ -65,6 +63,7 @@ export function newQuestion(difficulty = 'easy') {
             this.state.data,
             {
               questionList: {$set: parsedQuestions},
+              questionCount: {$set: this.state.data.questionCount + 1},
               hintCount: {$set: 1},
               answer: {$set: answerLocation}
             }
@@ -72,6 +71,32 @@ export function newQuestion(difficulty = 'easy') {
         });
       }
     });
+}
+
+export function newGame(difficulty = 'easy') {
+  newQuestion(difficulty);
+  this.setState({
+    data: update(
+      this.state.data,
+      {
+        gameState: {$set: 'questioning'}
+      })
+  });
+}
+
+export function submitGuess() {
+  const points = scoreAnswer(this.state.data.playerAnswer, this.state.data.answer, this.state.data.hintCount);
+  let gameState = 'answered';
+  if (this.state.data.questionCount >= MAX_QUESTION) {
+    gameState = 'end';
+  }
+  this.setState({
+    data: update(this.state.data,
+      {
+        score: {$set: this.state.data.score + points},
+        gameState: {$set: gameState}
+      })
+  });
 }
 
 function wikiTextFetch(cityName) {
