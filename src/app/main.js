@@ -13,7 +13,7 @@ export class Main extends Component {
     super(props);
     /*
     the state will contain
-    gameState -> one of 'uninitiated', 'ongoing', 'end'
+    gameState -> one of 'uninitiated', 'questioning', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
     hintCount -> int between 0, MAX_HINT
     score -> int representing the current score
