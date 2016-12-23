@@ -51,6 +51,7 @@ export class Main extends Component {
           <Alkali
             setPlayerAnswerCoords={this.setPlayerAnswerCoords}
             correctAnswerCoords={this.state.data.answer}
+            gameState={this.state.data.gameState}
             />
         </div>
         <Header
