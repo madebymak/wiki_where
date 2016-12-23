@@ -7,14 +7,14 @@ import {Trivia} from './trivia.js';
 import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess} from './actions/stateActions.js';
 
 export const MAX_HINT = 3;
-export const MAX_QUESTIONS = 5;
+export const MAX_QUESTION = 5;
 
 export class Main extends Component {
   constructor(props) {
     super(props);
     /*
     the state will contain
-    gameState -> one of 'uninitiated', 'questioning', 'answered', 'end'
+    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
     hintCount -> int between 0, MAX_HINT
     score -> int representing the current score
