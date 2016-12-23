@@ -32,7 +32,6 @@ export class Header extends Component {
   handleNewGame(e) {
     e.preventDefault();
     this.props.newGame();
-    this.props.newQuestion();
   }
 
   render() {
