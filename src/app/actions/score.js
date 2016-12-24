@@ -21,14 +21,6 @@ export function scoreAnswer(location1, location2, hintCount) {
   }
   const dist = distance(location1, location2);
   return distToAnswer(dist, hintCount);
-
-  // let outputScore;
-  // if (dist < MIN_RADIUS) {
-  //   outputScore = MAX_SCORE;
-  // } else {
-  //   outputScore = Math.floor(MAX_SCORE / hintCount * Math.pow(2, -dist / HALF_RATE));
-  // }
-  // return outputScore;
 }
 
 export function distToAnswer(dist, hintCount) {

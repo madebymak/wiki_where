@@ -21,9 +21,33 @@ export default function parseWikiResponse(responseObj) {
   return _.sample(feasiblePara, 3);
 }
 
-function censor(text, censorText, replaceText = CENSOR_BLOCK, repeatCount = 5) {
-  const censorRegex = new RegExp(censorText, 'g');
-  return text.replace(censorRegex, replaceText.repeat(repeatCount));
+function censor(text, censorText, replaceText = CENSOR_BLOCK, replaceCount = 5, lim = 0.8) {
+  const textList = text.split(' ');
+  const censoredList = [];
+  const agreement = Math.floor(censorText.length * lim);
+  for (let i = 0; i < textList.length; i += 1) {
+    let initJ = 0;
+    let endJ = 0;
+    let j = 0;
+    const word = textList[i];
+    for (let k = 0; k < word.length; k += 1) {
+      if (word[k] === censorText[j]) {
+        j += 1;
+        if (j === 0) {
+          initJ = j;
+        }
+        if (j >= agreement) {
+          endJ = j;
+        }
+      }
+    }
+    if ((endJ - initJ) > agreement) {
+      censoredList.push(replaceText.repeat(replaceCount));
+    } else {
+      censoredList.push(word);
+    }
+  }
+  return censoredList.join(' ').trim();
 }
 
 function stripParen(text) {

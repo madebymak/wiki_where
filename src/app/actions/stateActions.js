@@ -60,14 +60,16 @@ export function newQuestion(difficulty = 'easy') {
 function generateQuestion(difficulty) {
   console.log('fetching new questions');
   let answerLocation;
+  let cityString;
   let city;
   return randomCity(difficulty)
     .then(cityName => {
-      city = cityName;
+      cityString = cityName.join(', ');
+      city = cityName[0];
       return;
     })
     .then(() => {
-      return googleLocation(city);
+      return googleLocation(cityString);
     })
     .then(locationResponseObj => {
       answerLocation = locationResponseObj;
@@ -88,7 +90,7 @@ function generateQuestion(difficulty) {
       }
       return {
         answerLocation,
-        city,
+        cityString,
         parsedQuestions
       };
     });
