@@ -22,15 +22,6 @@ const cesiumViewerOptions = {
 
 export default class Alkali extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: {name: ""},
-      onlineUsers: 1,
-      messages: [] // messages coming from the server will be stored here as they arrive
-    };
-  }
-
   componentDidMount() {
     // Create the Cesium Viewer
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
@@ -120,6 +111,7 @@ export default class Alkali extends React.Component {
         this.props.playerAnswerCoords[0], this.props.playerAnswerCoords[1]
       ]);
       line.show = true;
+      this.viewer.flyTo(line);
     } else {
       answer.show = false;
       line.show = false;
