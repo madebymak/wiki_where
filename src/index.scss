@@ -38,6 +38,15 @@ h1 {
   color: white;
 }
 
+@keyframes dropHeader {
+  0% {
+    transform: translateX(-500%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .container {
   background-color: transparent;
   border: 0px solid green;
@@ -52,7 +61,6 @@ h1 {
   border: 1px solid blue;
   border-radius: 8px;
   color: white;
-  align-content: center;
   // min-height: 700px;
   max-height: 750px;
   margin: 10px;
@@ -60,15 +68,13 @@ h1 {
   position: relative;
   width: 310px;
   z-index: 3;
+  animation-name: dropHeader;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-duration: 2s;
   // overflow: scroll
 }
 
-.footer {
-  bottom: 0;
-  height: 50px;
-  position: relative;
-  z-index: 4
-}
 
 .test-box {
   color: green;
@@ -91,7 +97,7 @@ h1 {
   border: 1px solid yellow;
   // height: 50px;
   position: relative;
-  width: 30%;
+  width: 20%;
   z-index: 2
 }
 
@@ -112,6 +118,16 @@ h1 {
     z-index: 2
 }
 
+.footer {
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  height: 30px;
+  position: absolute;
+  width: 100%;
+  z-index: 2
+}
+
 #cesiumContainer {
   padding: 0;
   width: 100%;
@@ -125,7 +141,7 @@ button {
 
 .btn-group{
   border: 1px solid green;
-  left: 60%;
+  left: 50%;
 }
 
 //STARS BACKGROUND

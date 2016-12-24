@@ -2,7 +2,9 @@ import React from 'react';
 
 const styles = {
   container: {
-    border: '1px solid red',
+    border: '0px solid red',
+    borderBottom: '1px solid white',
+    padding: '3px',
     marginBottom: '5px'
   }
 };

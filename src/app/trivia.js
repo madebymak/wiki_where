@@ -5,7 +5,7 @@ import Renew from './renew.js';
 
 const styles = {
   container: {
-    border: '1px solid red',
+    border: '0px solid red',
     borderRadius: '6px',
     // display: 'flex',
     // flexDirection: 'column',

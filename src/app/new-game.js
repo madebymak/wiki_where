@@ -18,17 +18,24 @@ const muiTheme = getMuiTheme({
   }
 });
 
-class Main extends Component {
+class New extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
       open: false
     };
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleNewGame = this.handleNewGame.bind(this);
   }
 
   handleRequestClose() {
     this.setState({open: false});
+  }
+
+  handleNewGame() {
+    this.setState({open: false});
+    this.props.newGame();
   }
 
   handleTouchTap() {
@@ -36,14 +43,17 @@ class Main extends Component {
   }
 
   render() {
-    const standardActions = (<FlatButton label="Ok" onTouchTap={this.handleRequestClose}/>);
+    const standardActions = [
+      <FlatButton label="Cancel" key="1" onTouchTap={this.handleRequestClose}/>,
+      <FlatButton label="Ok" key="2" onTouchTap={this.handleNewGame}/>
+    ];
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="new game" onTouchTap={this.handleTouchTap}/>
-          <Dialog title="Dialog With Actions" actions={standardActions} modal={false} open={this.state.open} onRequestClose={this.handleClose}>
-          The actions in this window were passed in as an array of React objects.
+          <RaisedButton label="newgame" onTouchTap={this.handleTouchTap}/>
+          <Dialog title="Are you sure you want to start a new game?" actions={standardActions} modal={false} open={this.state.open}>
+            test
           </Dialog>
         </div>
       </MuiThemeProvider>
@@ -51,4 +61,8 @@ class Main extends Component {
   }
 }
 
-export default Main;
+New.propTypes = {
+  newGame: React.PropTypes.func.isRequired
+};
+
+export default New;
