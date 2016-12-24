@@ -4,9 +4,7 @@ import Question from './question';
 export class Questions extends React.Component {
 
   componentDidUpdate() {
-    console.log("trying", this.props.questionList);
-    if (this.props.questionList.length === 0 || this.props.gameState === 'initial') {
-      console.log("Trying again");
+    if (this.props.gameState === 'initial') {
       this.props.newQuestion();
     }
   }
