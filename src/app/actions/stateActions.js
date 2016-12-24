@@ -27,8 +27,6 @@ export function addHint() {
 
 export function newQuestion(difficulty = 'easy') {
   console.log('fetching new questions');
-  let answerLocation;
-  let city;
   console.log(`On the ${this.state.data.questionCount} question`);
   if (this.state.data.questionCount >= MAX_QUESTION) {
     console.warn(`The game ends at ${MAX_QUESTION} questions`);
@@ -38,7 +36,31 @@ export function newQuestion(difficulty = 'easy') {
     console.warn(`${this.state.data.gameState} is the wrong game state for adding questions`);
     return;
   }
+  return generateQuestion(difficulty)
+    .then(questionObj => {
+      this.setState({
+        data: update(
+          this.state.data,
+          {
+            gameState: {$set: 'questioning'},
+            questionList: {$set: questionObj.parsedQuestions},
+            questionCount: {$set: this.state.data.questionCount + 1},
+            hintCount: {$set: 1},
+            answer: {$set: questionObj.answerLocation},
+            answerCity: {$set: questionObj.city},
+            score: {$set: this.state.data.scoreToAdd + this.state.data.score},
+            scoreToAdd: {$set: 0},
+            currentDistance: {$set: 0}
+          }
+        )
+      });
+    });
+}
 
+function generateQuestion(difficulty) {
+  console.log('fetching new questions');
+  let answerLocation;
+  let city;
   return randomCity(difficulty)
     .then(cityName => {
       city = cityName;
@@ -61,24 +83,14 @@ export function newQuestion(difficulty = 'easy') {
     .then(parsedString => {
       const parsedQuestions = parsedString.slice(0, 4);
       console.log('at location', answerLocation);
-      if (parsedQuestions) {
-        this.setState({
-          data: update(
-            this.state.data,
-            {
-              gameState: {$set: 'questioning'},
-              questionList: {$set: parsedQuestions},
-              questionCount: {$set: this.state.data.questionCount + 1},
-              hintCount: {$set: 1},
-              answer: {$set: answerLocation},
-              answerCity: {$set: city},
-              score: {$set: this.state.data.scoreToAdd + this.state.data.score},
-              scoreToAdd: {$set: 0},
-              currentDistance: {$set: 0}
-            }
-            )
-        });
+      if (parsedString.length === 0) {
+        return generateQuestion(difficulty);
       }
+      return {
+        answerLocation,
+        city,
+        parsedQuestions
+      };
     });
 }
 
@@ -156,4 +168,3 @@ function randomCity(difficulty) {
     });
   }
 }
-
