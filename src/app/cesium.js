@@ -111,10 +111,14 @@ export default class Alkali extends React.Component {
         this.props.playerAnswerCoords[0], this.props.playerAnswerCoords[1]
       ]);
       line.show = true;
-      this.viewer.flyTo(line);
+      const heading = Cesium.Math.toRadians(90);
+      const pitch = Cesium.Math.toRadians(-60);
+      this.viewer.flyTo(line, new Cesium.HeadingPitchRange(heading, pitch));
     } else {
       answer.show = false;
       line.show = false;
+      //fly to earth
+      this.viewer.flyTo(this.viewer.scene);
     }
   }
 
