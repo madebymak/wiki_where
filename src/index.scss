@@ -17,25 +17,17 @@ a {
   }
 }
 
-.material-btn {
-  max-width: 150px;
-}
-
-.material-btn-submit {
-  max-width: 250px;
-  position: absolute;
-  top: 85%;
-  left: 50%
-}
-
-.material-btn-new {
-  max-width: 250px;
-  position: absolute;
-  right: 8%
-}
-
 h1 {
   color: white;
+}
+
+@keyframes dropHeader {
+  0% {
+    transform: translateX(-500%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .container {
@@ -43,8 +35,6 @@ h1 {
   border: 0px solid green;
   height: 100%;
   padding: 10px;
-  // position: relative;
-  // z-index: 2
 }
 
 .main {
@@ -52,22 +42,23 @@ h1 {
   border: 1px solid blue;
   border-radius: 8px;
   color: white;
-  align-content: center;
-  // min-height: 700px;
   max-height: 750px;
   margin: 10px;
-  // padding: 10px;
   position: relative;
   width: 310px;
   z-index: 3;
-  // overflow: scroll
+  animation-name: dropHeader;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-duration: 2s;
 }
 
-.footer {
-  bottom: 0;
-  height: 50px;
-  position: relative;
-  z-index: 4
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .test-box {
@@ -76,7 +67,6 @@ h1 {
 
 .globe {
   display: block;
-  // padding: 0;
   position: absolute;;;
   height: 100%;
   width: 100%;
@@ -89,27 +79,35 @@ h1 {
 .header {
   background-color: transparent;
   border: 1px solid yellow;
-  // height: 50px;
   position: relative;
-  width: 30%;
+  width: 20%;
   z-index: 2
 }
 
 .new-game-btn {
   top: 5%;
   right: 2%;
-  // height: 50px;
   position: absolute;
   width: 100px;
   z-index: 2
 }
 
 .submit-btn {
-    bottom: 5%;
-    right: 2%;
-    position: absolute;
-    width: 100px;
-    z-index: 2
+  bottom: 5%;
+  right: 2%;
+  position: absolute;
+  width: 100px;
+  z-index: 2
+}
+
+.footer {
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  height: 30px;
+  position: absolute;
+  width: 100%;
+  z-index: 2
 }
 
 #cesiumContainer {
@@ -125,7 +123,7 @@ button {
 
 .btn-group{
   border: 1px solid green;
-  left: 60%;
+  left: 50%;
 }
 
 //STARS BACKGROUND

@@ -3,6 +3,8 @@ import {Header} from './header';
 import Alkali from './cesium.js';
 import {Player} from './player-box.js';
 import {Trivia} from './trivia.js';
+import Submit from './submit.js';
+
 //eslint-disable-next-line
 import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess} from './actions/stateActions.js';
 
@@ -75,10 +77,13 @@ export class Main extends Component {
               />
           </div>
         </div>
-        <div>
-        {// eslint-disable-next-line}
+        <div className="submit-btn">
+          <Submit
+            onSubmit={this.handleGuess}
+            />
+        {/* {// eslint-disable-next-line}
           <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
-        }
+         */}
         </div>
       </div>
     );

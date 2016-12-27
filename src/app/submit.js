@@ -18,7 +18,7 @@ const muiTheme = getMuiTheme({
   }
 });
 
-class New extends Component {
+class Submit extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -26,34 +26,29 @@ class New extends Component {
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
-    this.handleNewGame = this.handleNewGame.bind(this);
   }
 
   handleRequestClose() {
     this.setState({open: false});
   }
 
-  handleNewGame() {
-    this.setState({open: false});
-    this.props.newGame();
-  }
-
   handleTouchTap() {
     this.setState({open: true});
+    this.props.onSubmit();
   }
 
   render() {
-    const standardActions = [
-      <FlatButton label="Cancel" key="1" onTouchTap={this.handleRequestClose}/>,
-      <FlatButton label="Ok" key="2" onTouchTap={this.handleNewGame}/>
-    ];
+    const standardActions = (
+      <FlatButton label="OK" key="1" onTouchTap={this.handleRequestClose}/>
+    );
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="newgame" onTouchTap={this.handleTouchTap}/>
-          <Dialog title="Are you sure you want to start a new game?" actions={standardActions} modal={false} open={this.state.open}>
-            test
+          <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
+          <Dialog title="Results" actions={standardActions} modal={false} open={this.state.open}>
+            Score: <br/>
+            Distance:
           </Dialog>
         </div>
       </MuiThemeProvider>
@@ -61,8 +56,8 @@ class New extends Component {
   }
 }
 
-New.propTypes = {
-  newGame: React.PropTypes.func.isRequired
-};
+export default Submit;
 
-export default New;
+Submit.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired
+};
