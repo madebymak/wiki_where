@@ -6,7 +6,7 @@ import {Trivia} from './trivia.js';
 import Submit from './submit.js';
 
 //eslint-disable-next-line
-import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess} from './actions/stateActions.js';
+import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess, flewHome} from './actions/stateActions.js';
 
 export const MAX_HINT = 3;
 export const MAX_QUESTION = 5;
@@ -29,6 +29,7 @@ export class Main extends Component {
     this.state = {
       data: {
         gameState: 'uninitiated',
+        flyHomeSwitch: false,
         questionList: ['Question 1', 'Question 2', 'Question 3'],
         scoreToAdd: 0,
         currentDistance: 0,
@@ -47,6 +48,7 @@ export class Main extends Component {
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
     this.handleGuess = submitGuess.bind(this);
     this.newGame = newGame.bind(this);
+    this.flewHome = flewHome.bind(this);
   }
 
   render() {
@@ -58,6 +60,8 @@ export class Main extends Component {
             playerAnswerCoords={this.state.data.playerAnswer}
             correctAnswerCoords={this.state.data.answer}
             gameState={this.state.data.gameState}
+            flyHomeSwitch={this.state.data.flyHomeSwitch}
+            flewHome={this.flewHome}
             />
         </div>
         <Header
@@ -81,7 +85,7 @@ export class Main extends Component {
           <Submit onHandleGuess={this.handleGuess}/>
         {/* {// eslint-disable-next-line}
           <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
-        } */}
+         */}
         </div>
       </div>
     );

@@ -22,15 +22,6 @@ const cesiumViewerOptions = {
 
 export default class Alkali extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: {name: ""},
-      onlineUsers: 1,
-      messages: [] // messages coming from the server will be stored here as they arrive
-    };
-  }
-
   componentDidMount() {
     // Create the Cesium Viewer
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
@@ -120,9 +111,18 @@ export default class Alkali extends React.Component {
         this.props.playerAnswerCoords[0], this.props.playerAnswerCoords[1]
       ]);
       line.show = true;
+      const heading = Cesium.Math.toRadians(90);
+      const pitch = Cesium.Math.toRadians(-60);
+      this.viewer.flyTo(line, new Cesium.HeadingPitchRange(heading, pitch));
     } else {
       answer.show = false;
       line.show = false;
+      if (this.props.flyHomeSwitch === true) {
+        this.viewer.camera.flyHome();
+        const guess = this.viewer.entities.getById('guess');
+        guess.show = false;
+        this.props.flewHome();
+      }
     }
   }
 
@@ -140,5 +140,7 @@ Alkali.propTypes = {
   correctAnswerCoords: React.PropTypes.array.isRequired,
   setPlayerAnswerCoords: React.PropTypes.func.isRequired,
   playerAnswerCoords: React.PropTypes.array.isRequired,
-  gameState: React.PropTypes.string.isRequired
+  gameState: React.PropTypes.string.isRequired,
+  flyHomeSwitch: React.PropTypes.bool.isRequired,
+  flewHome: React.PropTypes.func.isRequired
 };

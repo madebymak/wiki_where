@@ -13,6 +13,15 @@ export function setPlayerAnswerCoords(coordinates) {
   });
 }
 
+export function flewHome() {
+  this.setState({
+    data: update(this.state.data,
+      {
+        flyHomeSwitch: {$set: false}
+      })
+  });
+}
+
 export function addHint() {
   console.log('Adding a new Hint');
   console.log(this.state.data);
@@ -43,6 +52,7 @@ export function newQuestion(difficulty = 'easy') {
           this.state.data,
           {
             gameState: {$set: 'questioning'},
+            flyHomeSwitch: {$set: true},
             questionList: {$set: questionObj.parsedQuestions},
             questionCount: {$set: this.state.data.questionCount + 1},
             hintCount: {$set: 1},
