@@ -46,7 +46,7 @@ class Submit extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
-          <Dialog title="Results" actions={standardActions} modal={false} open={this.state.open}>
+          <Dialog overlayClassName="modal-bg" contentClassName="modal-bg" title="Results" actions={standardActions} modal={false} open={this.state.open}>
             Score:<br/>
             Distance:
           </Dialog>

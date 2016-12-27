@@ -23,10 +23,10 @@ h1 {
 
 @keyframes dropHeader {
   0% {
-    transform: translateX(-500%);
+    transform: translateY(-500%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -47,10 +47,14 @@ h1 {
   position: relative;
   width: 310px;
   z-index: 3;
-  animation-name: dropHeader;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-out;
-  animation-duration: 2s;
+  // animation-name: dropHeader;
+  // animation-iteration-count: 1;
+  // animation-timing-function: ease-out;
+  // animation-duration: 2s;
+}
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .no-select {
