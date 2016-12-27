@@ -34,6 +34,7 @@ class Submit extends Component {
 
   handleTouchTap() {
     this.setState({open: true});
+    this.props.onSubmit();
   }
 
   render() {
@@ -56,3 +57,7 @@ class Submit extends Component {
 }
 
 export default Submit;
+
+Submit.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired
+};
