@@ -117,7 +117,7 @@ export default class Alkali extends React.Component {
     } else {
       answer.show = false;
       line.show = false;
-      //fly to earth
+      // TOFIX - fly to earth
       this.viewer.flyTo(this.viewer.scene);
     }
   }
