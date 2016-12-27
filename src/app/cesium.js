@@ -117,8 +117,12 @@ export default class Alkali extends React.Component {
     } else {
       answer.show = false;
       line.show = false;
-      // TOFIX - fly to earth
-      this.viewer.flyTo(this.viewer.scene);
+      if (this.props.flyHomeSwitch === true) {
+        this.viewer.camera.flyHome();
+        const guess = this.viewer.entities.getById('guess');
+        guess.show = false;
+        this.props.flewHome();
+      }
     }
   }
 
@@ -136,5 +140,7 @@ Alkali.propTypes = {
   correctAnswerCoords: React.PropTypes.array.isRequired,
   setPlayerAnswerCoords: React.PropTypes.func.isRequired,
   playerAnswerCoords: React.PropTypes.array.isRequired,
-  gameState: React.PropTypes.string.isRequired
+  gameState: React.PropTypes.string.isRequired,
+  flyHomeSwitch: React.PropTypes.bool.isRequired,
+  flewHome: React.PropTypes.func.isRequired
 };
