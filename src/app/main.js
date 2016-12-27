@@ -78,7 +78,7 @@ export class Main extends Component {
           </div>
         </div>
         <div className="submit-btn">
-          <Submit/>
+          <Submit onHandleGuess={this.handleGuess}/>
         {/* {// eslint-disable-next-line}
           <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
         } */}

@@ -34,6 +34,7 @@ class Submit extends Component {
 
   handleTouchTap() {
     this.setState({open: true});
+    this.props.onHandleGuess();
   }
 
   render() {
@@ -46,7 +47,7 @@ class Submit extends Component {
         <div style={styles.container}>
           <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Results" actions={standardActions} modal={false} open={this.state.open}>
-            Score: <br/>
+            Score: {this.props.playerScore}<br/>
             Distance:
           </Dialog>
         </div>
@@ -54,5 +55,10 @@ class Submit extends Component {
     );
   }
 }
+
+Submit.propTypes = {
+  playerScore: React.PropTypes.number.isRequired,
+  onHandleGuess: React.PropTypes.number.isRequired
+};
 
 export default Submit;
