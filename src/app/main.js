@@ -88,6 +88,7 @@ export class Main extends Component {
             onHandleGuess={this.handleGuess}
             scoreToAdd={this.state.data.scoreToAdd}
             answerCity={this.state.data.answerCity}
+            currentDistance={this.state.data.currentDistance}
             />
         </div>
       </div>
