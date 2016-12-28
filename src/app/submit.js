@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
@@ -18,7 +18,7 @@ const muiTheme = getMuiTheme({
   }
 });
 
-class Submit extends Component {
+export default class Submit extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -60,7 +60,7 @@ class Submit extends Component {
   }
 }
 
-export default Submit;
+// export default Submit;
 
 Submit.propTypes = {
   onHandleGuess: React.PropTypes.func.isRequired,
