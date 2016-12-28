@@ -63,6 +63,6 @@ Submit.propTypes = {
   onHandleGuess: React.PropTypes.func.isRequired,
   scoreToAdd: React.PropTypes.number.isRequired,
   currentDistance: React.PropTypes.number.isRequired,
-  answerCity: React.PropTypes.string.isRequired
+  answerCity: React.PropTypes.string.isRequired,
   gameState: React.PropTypes.string.isRequired
 };
