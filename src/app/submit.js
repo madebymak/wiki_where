@@ -46,9 +46,10 @@ class Submit extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
-          <Dialog overlayClassName="modal-bg" contentClassName="modal-bg" title="Results" actions={standardActions} modal={false} open={this.state.open}>
-            Score:<br/>
-            Distance:
+          <Dialog overlayClassName="modal-bg" title="Results" actions={standardActions} modal={false} open={this.state.open}>
+            Answer:<br/>
+            Distance:<br/>
+            You scored {this.props.scoreToAdd} points on this round!
           </Dialog>
         </div>
       </MuiThemeProvider>
@@ -59,5 +60,6 @@ class Submit extends Component {
 export default Submit;
 
 Submit.propTypes = {
-  onHandleGuess: React.PropTypes.number.isRequired
+  onHandleGuess: React.PropTypes.number.isRequired,
+  scoreToAdd: React.PropTypes.number.isRequired
 };

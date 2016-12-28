@@ -72,6 +72,7 @@ export class Main extends Component {
           <div>
             <Player
               playerScore={this.state.data.score}
+              currentRound={this.state.data.questionCount}
               />
             <Trivia
               stateData={this.state.data}
@@ -82,10 +83,12 @@ export class Main extends Component {
           </div>
         </div>
         <div className="submit-btn">
-          <Submit onHandleGuess={this.handleGuess}/>
-        {/* {// eslint-disable-next-line}
-          <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
-         */}
+          <Submit
+            stateData={this.state.data}
+            onHandleGuess={this.handleGuess}
+            scoreToAdd={this.state.data.scoreToAdd}
+            answerCity={this.state.data.answerCity}
+            />
         </div>
       </div>
     );

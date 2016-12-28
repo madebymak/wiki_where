@@ -16,8 +16,7 @@ export class Player extends Component {
   render() {
     return (
       <div style={styles.container}>
-        Player 1
-        <br/>
+        Round: {this.props.currentRound}/5 <br/>
         Score: {this.props.playerScore}
       </div>
     );
@@ -25,5 +24,6 @@ export class Player extends Component {
 }
 
 Player.propTypes = {
-  playerScore: React.PropTypes.number.isRequired
+  playerScore: React.PropTypes.number.isRequired,
+  currentRound: React.PropTypes.number.isRequired
 };
