@@ -63,6 +63,12 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
   let outputString = '';
   let moreSentence = 0;
   const sentences = text.match(/([^.!?]+[.!?:]"?)\s?/g);
+  if (sentences === null) {
+    console.log("no paragraph", text);
+    return outputString;
+  }
+  // let iter = 0;
+  // console.log("paragraph of length", sentences.length, sentences[sentences.length - 1]);
   let i = 0;
   function addNext(i) {
     if (sentences[i]) {
@@ -71,15 +77,18 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
   }
   while (moreSentence < 2) {
     addNext(i);
-    const lastCapital = outputString[outputString.length - 2].match(/[A-Z]/);
-    const noSpaceFollow = sentences[i + 1] && sentences[i + 1][0] !== ' ';
-    if (lastCapital || noSpaceFollow) {
-      moreSentence -= 1;
-    }
-    if (outputString.length > minLength) {
+    // const lastCapital = outputString[outputString.length - 2].match(/[A-Z]/);
+    // const noSpaceFollow = sentences[i + 1] && sentences[i + 1][0] !== ' ';
+    // console.log(Boolean(sentences[i + 1]), sentences[i + 1]);
+    // console.log(moreSentence, sentences[i], lastCapital, noSpaceFollow);
+    // if (lastCapital || !noSpaceFollow) {
+    //   moreSentence -= 1;
+    // }
+    if (outputString.length > minLength || !sentences[i]) {
       moreSentence += 1;
     }
     i += 1;
+    // iter += 1;
   }
   return outputString;
 }
