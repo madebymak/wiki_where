@@ -8,7 +8,8 @@ export function setPlayerAnswerCoords(coordinates) {
   this.setState({
     data: update(this.state.data,
       {
-        playerAnswer: {$set: coordinates}
+        playerAnswer: {$set: coordinates},
+        gameState: {$set: 'answering'}
       })
   });
 }
@@ -119,8 +120,8 @@ export function newGame(difficulty = 'easy') {
 }
 
 export function submitGuess() {
-  if (this.state.data.gameState !== 'questioning') {
-    console.warn("You can't submit answers when the game isn't in progress");
+  if (this.state.data.gameState !== 'answering') {
+    console.warn("You can't submit answers when you have not placed your answer");
     return;
   }
   const dist = distance(this.state.data.playerAnswer, this.state.data.answer);
