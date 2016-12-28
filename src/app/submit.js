@@ -47,8 +47,8 @@ class Submit extends Component {
         <div style={styles.container}>
           <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
           <Dialog overlayClassName="modal-bg" title="Results" actions={standardActions} modal={false} open={this.state.open}>
-            Answer:<br/>
-            Distance:<br/>
+            Answer: {this.props.answerCity}<br/>
+            Distance: {Math.round(this.props.currentDistance)} km <br/>
             You scored {this.props.scoreToAdd} points on this round!
           </Dialog>
         </div>
@@ -60,6 +60,8 @@ class Submit extends Component {
 export default Submit;
 
 Submit.propTypes = {
-  onHandleGuess: React.PropTypes.number.isRequired,
-  scoreToAdd: React.PropTypes.number.isRequired
+  onHandleGuess: React.PropTypes.func.isRequired,
+  scoreToAdd: React.PropTypes.number.isRequired,
+  currentDistance: React.PropTypes.number.isRequired,
+  answerCity: React.PropTypes.string.isRequired
 };
