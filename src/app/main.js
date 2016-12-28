@@ -84,7 +84,6 @@ export class Main extends Component {
         </div>
         <div className="submit-btn">
           <Submit
-            stateData={this.state.data}
             onHandleGuess={this.handleGuess}
             scoreToAdd={this.state.data.scoreToAdd}
             answerCity={this.state.data.answerCity}

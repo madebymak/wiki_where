@@ -39,17 +39,20 @@ class Submit extends Component {
 
   render() {
     const standardActions = (
-      <FlatButton label="OK" key="1" onTouchTap={this.handleRequestClose}/>
+      <FlatButton className="modal-dialog-color" label="OK" key="1" onTouchTap={this.handleRequestClose}/>
     );
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
-          <Dialog overlayClassName="modal-bg" title="Results" actions={standardActions} modal={false} open={this.state.open}>
-            Answer: {this.props.answerCity}<br/>
-            Distance: {Math.round(this.props.currentDistance)} km <br/>
-            You scored {this.props.scoreToAdd} points on this round!
+          <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open}>
+            <div className="modal-dialog-color">
+              <h3>Results</h3>
+              Answer: {this.props.answerCity}<br/>
+              Distance: {Math.round(this.props.currentDistance)} km <br/>
+              You scored {this.props.scoreToAdd} points on this round!
+            </div>
           </Dialog>
         </div>
       </MuiThemeProvider>
