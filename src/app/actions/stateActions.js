@@ -57,7 +57,7 @@ export function newQuestion(difficulty = 'easy') {
             questionCount: {$set: this.state.data.questionCount + 1},
             hintCount: {$set: 1},
             answer: {$set: questionObj.answerLocation},
-            answerCity: {$set: questionObj.city},
+            answerCity: {$set: questionObj.cityString},
             score: {$set: this.state.data.scoreToAdd + this.state.data.score},
             scoreToAdd: {$set: 0},
             currentDistance: {$set: 0}
