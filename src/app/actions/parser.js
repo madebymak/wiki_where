@@ -18,6 +18,7 @@ export default function parseWikiResponse(responseObj) {
   feasiblePara = feasiblePara.filter(element => {
     return censoredOnly(element);
   });
+  console.log("!!!!!!!!!", feasiblePara[32]);
   return _.sample(feasiblePara, 3);
 }
 
@@ -61,11 +62,12 @@ function censoredOnly(text, censorBlock = CENSOR_BLOCK) {
 function wholeSentenceMin(text, minLength = MIN_LENGTH) {
   let outputString = '';
   let moreSentence = 0;
-  const sentences = text.split('.');
+  const sentences = text.match(/([^.!?]+[.!?:]"?)\s?/g);
   let i = 0;
   function addNext(i) {
-    outputString += sentences[i];
-    outputString += '.';
+    if (sentences[i]) {
+      outputString += sentences[i];
+    }
   }
   while (moreSentence < 2) {
     addNext(i);
@@ -79,5 +81,6 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
     }
     i += 1;
   }
-  return `${outputString.replace(/\.+$/, '')}.`;
+  return outputString;
 }
+
