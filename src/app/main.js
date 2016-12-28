@@ -16,7 +16,7 @@ export class Main extends Component {
     super(props);
     /*
     the state will contain
-    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answered', 'end'
+    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answering', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
     currentDistance -> distance the guess is from the answer, in kilometers
     hintCount -> int between 0, MAX_HINT
@@ -82,10 +82,10 @@ export class Main extends Component {
           </div>
         </div>
         <div className="submit-btn">
-          <Submit onHandleGuess={this.handleGuess}/>
-        {/* {// eslint-disable-next-line}
-          <button className="submit-btn" onClick={this.handleGuess}>Submit</button>
-         */}
+          <Submit
+            onHandleGuess={this.handleGuess}
+            gameState={this.state.data.gameState}
+            />
         </div>
       </div>
     );
