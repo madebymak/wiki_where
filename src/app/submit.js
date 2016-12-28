@@ -59,6 +59,6 @@ class Submit extends Component {
 export default Submit;
 
 Submit.propTypes = {
-  onHandleGuess: React.PropTypes.number.isRequired,
+  onHandleGuess: React.PropTypes.func.isRequired,
   gameState: React.PropTypes.string.isRequired
 };
