@@ -45,7 +45,7 @@ export default class Submit extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="submit" onTouchTap={this.handleTouchTap}/>
+          <RaisedButton label="submit" disabled={this.props.gameState !== 'answering'} primary={this.props.gameState === 'answering'} onTouchTap={this.handleTouchTap}/>
           <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open}>
             <div className="modal-dialog-color">
               <h3>Results</h3>
@@ -60,11 +60,10 @@ export default class Submit extends React.Component {
   }
 }
 
-// export default Submit;
-
 Submit.propTypes = {
   onHandleGuess: React.PropTypes.func.isRequired,
   scoreToAdd: React.PropTypes.number.isRequired,
   currentDistance: React.PropTypes.number.isRequired,
-  answerCity: React.PropTypes.string.isRequired
+  answerCity: React.PropTypes.string.isRequired,
+  gameState: React.PropTypes.string.isRequired
 };

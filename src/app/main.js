@@ -16,7 +16,7 @@ export class Main extends Component {
     super(props);
     /*
     the state will contain
-    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answered', 'end'
+    gameState -> one of 'uninitiated', 'initial', 'questioning', 'answering', 'answered', 'end'
     questionList -> [String] of length MAX_HINT
     currentDistance -> distance the guess is from the answer, in kilometers
     hintCount -> int between 0, MAX_HINT
@@ -88,6 +88,7 @@ export class Main extends Component {
             scoreToAdd={this.state.data.scoreToAdd}
             answerCity={this.state.data.answerCity}
             currentDistance={this.state.data.currentDistance}
+            gameState={this.state.data.gameState}
             />
         </div>
       </div>
