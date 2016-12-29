@@ -103,7 +103,7 @@ export default class Alkali extends React.Component {
   componentDidUpdate() {
     const answer = this.viewer.entities.getById('answer');
     const line = this.viewer.entities.getById('line');
-    if (this.props.gameState === 'answered') {
+    if (this.props.gameState === 'answered' || this.props.gameState === 'end') {
       answer.position = Cesium.Cartesian3.fromDegrees(this.props.correctAnswerCoords[0], this.props.correctAnswerCoords[1]);
       answer.show = true;
       line.polyline.positions = Cesium.Cartesian3.fromDegreesArray([
