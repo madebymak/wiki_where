@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Questions} from './questions.js';
 import Hint from './hint.js';
-import Renew from './renew.js';
+// import Renew from './renew.js';
 
 const styles = {
   container: {
@@ -34,7 +34,6 @@ export class Trivia extends Component {
         </div>
         <div className="btn-group">
           <Hint addHint={this.props.addHint}/>
-          <Renew newQuestion={this.props.newQuestion}/>
         </div>
         {/* <Hint addHint={this.props.addHint}/>
         <Renew newQuestion={this.props.newQuestion}/>

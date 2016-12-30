@@ -30,6 +30,7 @@ export default class Submit extends React.Component {
 
   handleRequestClose() {
     this.setState({open: false});
+    this.props.newQuestion();
   }
 
   handleTouchTap() {
@@ -39,7 +40,7 @@ export default class Submit extends React.Component {
 
   render() {
     const standardActions = (
-      <FlatButton className="modal-dialog-color" label="OK" key="1" onTouchTap={this.handleRequestClose}/>
+      <FlatButton className="modal-dialog-color" label="next question" key="1" onTouchTap={this.handleRequestClose}/>
     );
 
     return (
@@ -65,5 +66,6 @@ Submit.propTypes = {
   scoreToAdd: React.PropTypes.number.isRequired,
   currentDistance: React.PropTypes.number.isRequired,
   answerCity: React.PropTypes.string.isRequired,
-  gameState: React.PropTypes.string.isRequired
+  gameState: React.PropTypes.string.isRequired,
+  newQuestion: React.PropTypes.func.isRequired
 };

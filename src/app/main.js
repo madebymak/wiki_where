@@ -89,6 +89,7 @@ export class Main extends Component {
             answerCity={this.state.data.answerCity}
             currentDistance={this.state.data.currentDistance}
             gameState={this.state.data.gameState}
+            newQuestion={this.newQuestion}
             />
         </div>
       </div>
