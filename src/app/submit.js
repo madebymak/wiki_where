@@ -5,7 +5,7 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Summary from './summary.js';
+// import Summary from './summary.js';
 
 const styles = {
   container: {
@@ -37,7 +37,7 @@ export default class Submit extends React.Component {
 
   handleGameClose() {
     this.setState({open: false});
-    // this.props.newGame();
+    this.props.newGame();
   }
 
   handleTouchTap() {
@@ -51,8 +51,8 @@ export default class Submit extends React.Component {
     );
 
     const summaryAction = (
-      // <FlatButton className="modal-dialog-color" label="summary" key="1" onTouchTap={this.handleGameClose}/>
-      <Summary newGame={this.props.newGame} onTouchTap={this.handleGameClose}/>
+      <FlatButton className="modal-dialog-color" label="new game" key="1" onTouchTap={this.handleGameClose}/>
+      // <Summary newGame={this.props.newGame} onTouchTap={this.handleGameClose}/>
     );
 
     const roundCheck = (this.props.currentRound < 5);
@@ -81,9 +81,7 @@ export default class Submit extends React.Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="submit" disabled={this.props.gameState !== 'answering'} primary={this.props.gameState === 'answering'} onTouchTap={this.handleTouchTap}/>
-          {/* <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open}> */}
             {roundCheck ? roundScore : finalRound}
-          {/* </Dialog> */}
         </div>
       </MuiThemeProvider>
     );
