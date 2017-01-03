@@ -90,6 +90,9 @@ export class Main extends Component {
             currentDistance={this.state.data.currentDistance}
             gameState={this.state.data.gameState}
             newQuestion={this.newQuestion}
+            currentRound={this.state.data.questionCount}
+            newGame={this.newGame}
+            playerScore={this.state.data.score}
             />
         </div>
       </div>
