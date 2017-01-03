@@ -114,7 +114,8 @@ export function newGame(difficulty = 'easy') {
       this.state.data,
       {
         gameState: {$set: 'initial'},
-        questionCount: {$set: 0}
+        questionCount: {$set: 0},
+        score: {$set: 0}
       })
   });
 }
