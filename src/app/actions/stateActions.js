@@ -115,7 +115,8 @@ export function newGame(difficulty = 'easy') {
       {
         gameState: {$set: 'initial'},
         questionCount: {$set: 0},
-        score: {$set: 0}
+        score: {$set: 0},
+        scoreToAdd: {$set: 0}
       })
   });
 }
