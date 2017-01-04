@@ -5,6 +5,7 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import Summary from './summary.js';
 
 const styles = {
   container: {
@@ -26,11 +27,17 @@ export default class Submit extends React.Component {
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleGameClose = this.handleGameClose.bind(this);
   }
 
   handleRequestClose() {
     this.setState({open: false});
     this.props.newQuestion();
+  }
+
+  handleGameClose() {
+    this.setState({open: false});
+    this.props.newGame();
   }
 
   handleTouchTap() {
@@ -40,21 +47,41 @@ export default class Submit extends React.Component {
 
   render() {
     const standardActions = (
-      <FlatButton className="modal-dialog-color" label="next question" key="1" onTouchTap={this.handleRequestClose}/>
+      <FlatButton className="modal-dialog-color" label="next" key="1" onTouchTap={this.handleRequestClose}/>
+    );
+
+    const summaryAction = (
+      <FlatButton className="modal-dialog-color" label="new game" key="1" onTouchTap={this.handleGameClose}/>
+      // <Summary newGame={this.props.newGame} onTouchTap={this.handleGameClose}/>
+    );
+
+    const roundCheck = (this.props.currentRound < 5);
+
+    const result = (
+      <div className="test-box">
+        <h3>Results</h3>
+        Answer: {this.props.answerCity}<br/>
+        Distance off by: {Math.round(this.props.currentDistance)} km <br/>
+        You scored {this.props.scoreToAdd} points on this round!
+      </div>
+    );
+
+    const roundScore = (
+      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open} onTouchTap={this.handleGameClose}>
+        {result}
+      </Dialog>);
+
+    const finalRound = (
+      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={summaryAction} modal={false} open={this.state.open} onTouchTap={this.handleGameClose}>
+        {result}
+      </Dialog>
     );
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="submit" disabled={this.props.gameState !== 'answering'} primary={this.props.gameState === 'answering'} onTouchTap={this.handleTouchTap}/>
-          <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open}>
-            <div className="modal-dialog-color">
-              <h3>Results</h3>
-              Answer: {this.props.answerCity}<br/>
-              Distance: {Math.round(this.props.currentDistance)} km <br/>
-              You scored {this.props.scoreToAdd} points on this round!
-            </div>
-          </Dialog>
+            {roundCheck ? roundScore : finalRound}
         </div>
       </MuiThemeProvider>
     );
@@ -67,5 +94,7 @@ Submit.propTypes = {
   currentDistance: React.PropTypes.number.isRequired,
   answerCity: React.PropTypes.string.isRequired,
   gameState: React.PropTypes.string.isRequired,
+  currentRound: React.PropTypes.string.isRequired,
+  newGame: React.PropTypes.string.isRequired,
   newQuestion: React.PropTypes.func.isRequired
 };
