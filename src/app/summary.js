@@ -67,6 +67,6 @@ export default class Summary extends React.Component {
 
 Summary.propTypes = {
   newGame: React.PropTypes.func.isRequired,
-  playerScore: React.PropTypes.func.isRequired,
-  scoreToAdd: React.PropTypes.func.isRequired
+  playerScore: React.PropTypes.number.isRequired,
+  scoreToAdd: React.PropTypes.number.isRequired
 };

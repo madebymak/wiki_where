@@ -92,9 +92,8 @@ Submit.propTypes = {
   currentDistance: React.PropTypes.number.isRequired,
   answerCity: React.PropTypes.string.isRequired,
   gameState: React.PropTypes.string.isRequired,
-  currentRound: React.PropTypes.string.isRequired,
-  newGame: React.PropTypes.string.isRequired,
-  playerScore: React.PropTypes.string.isRequired,
-  newQuestion: React.PropTypes.func.isRequired,
-  questionCount: React.PropTypes.func.isRequired
+  currentRound: React.PropTypes.number.isRequired,
+  newGame: React.PropTypes.func.isRequired,
+  playerScore: React.PropTypes.number.isRequired,
+  newQuestion: React.PropTypes.func.isRequired
 };
