@@ -43,17 +43,18 @@ export default class Summary extends React.Component {
   }
 
   render() {
-    const standardActions = [
-      <FlatButton label="Cancel" key="1" onTouchTap={this.handleRequestClose}/>,
+    const standardActions = (
       <FlatButton label="New Game" key="2" onTouchTap={this.handleNewGame}/>
-    ];
+    );
+
+    const totalPoints = this.props.playerScore + this.props.scoreToAdd;
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <RaisedButton label="Summary" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
-            Total points scored: {this.props.playerScore}<br/>
+            Total points scored: {totalPoints}<br/>
             Good job!<br/>
             Share on social media: <br/>
             Facebook Twitter Email
@@ -66,5 +67,6 @@ export default class Summary extends React.Component {
 
 Summary.propTypes = {
   newGame: React.PropTypes.func.isRequired,
-  playerScore: React.PropTypes.func.isRequired
+  playerScore: React.PropTypes.func.isRequired,
+  scoreToAdd: React.PropTypes.func.isRequired
 };

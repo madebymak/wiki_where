@@ -71,7 +71,7 @@ export default class Submit extends React.Component {
     const finalRound = (
       <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" modal={false} open={this.state.open}>
         {result}<br/>
-        <Summary newGame={this.props.newGame} playerScore={this.props.playerScore}/>
+        <Summary newGame={this.props.newGame} playerScore={this.props.playerScore} scoreToAdd={this.props.scoreToAdd}/>
       </Dialog>
     );
 
