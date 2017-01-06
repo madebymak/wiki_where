@@ -39,7 +39,7 @@ h1 {
 
 .main {
   background: rgba(0, 0, 0, .5);
-  border: 1px solid blue;
+  border: 0px solid blue;
   border-radius: 8px;
   color: white;
   max-height: 750px;
@@ -93,7 +93,7 @@ h1 {
 
 .header {
   background-color: transparent;
-  border: 1px solid yellow;
+  border: 1px solid transparent;
   position: relative;
   width: 20%;
   z-index: 2
@@ -137,7 +137,7 @@ button {
 }
 
 .btn-group{
-  border: 1px solid green;
+  border: 0px solid green;
   // left: 50%;
 }
 

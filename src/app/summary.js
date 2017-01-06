@@ -53,7 +53,10 @@ export default class Summary extends React.Component {
         <div style={styles.container}>
           <RaisedButton label="Summary" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
-            Summary
+            Total points scored: {this.props.playerScore}<br/>
+            Good job!<br/>
+            Share on social media: <br/>
+            Facebook Twitter Email
           </Dialog>
         </div>
       </MuiThemeProvider>
@@ -62,5 +65,6 @@ export default class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  newGame: React.PropTypes.func.isRequired
+  newGame: React.PropTypes.func.isRequired,
+  playerScore: React.PropTypes.func.isRequired
 };

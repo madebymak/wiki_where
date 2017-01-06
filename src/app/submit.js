@@ -5,7 +5,7 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import Summary from './summary.js';
+import Summary from './summary.js';
 
 const styles = {
   container: {
@@ -27,7 +27,6 @@ export default class Submit extends React.Component {
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
-    this.handleGameClose = this.handleGameClose.bind(this);
   }
 
   handleRequestClose() {
@@ -35,24 +34,20 @@ export default class Submit extends React.Component {
     this.props.newQuestion();
   }
 
-  handleGameClose() {
-    this.setState({open: false});
-    this.props.newGame();
-  }
-
   handleTouchTap() {
     this.setState({open: true});
     this.props.onHandleGuess();
   }
 
+  componentWillUpdate() {
+    if (this.props.currentRound === 0) {
+      this.setState({open: false});
+    }
+  }
+
   render() {
     const standardActions = (
       <FlatButton className="modal-dialog-color" label="next" key="1" onTouchTap={this.handleRequestClose}/>
-    );
-
-    const summaryAction = (
-      <FlatButton className="modal-dialog-color" label="new game" key="1" onTouchTap={this.handleGameClose}/>
-      // <Summary newGame={this.props.newGame} onTouchTap={this.handleGameClose}/>
     );
 
     const roundCheck = (this.props.currentRound < 5);
@@ -67,13 +62,15 @@ export default class Submit extends React.Component {
     );
 
     const roundScore = (
-      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open} onTouchTap={this.handleGameClose}>
+      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={standardActions} modal={false} open={this.state.open}>
         {result}
-      </Dialog>);
+      </Dialog>
+    );
 
     const finalRound = (
-      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" actions={summaryAction} modal={false} open={this.state.open} onTouchTap={this.handleGameClose}>
-        {result}
+      <Dialog contentClassName="dialogRadiusHack" overlayClassName="modal-bg" modal={false} open={this.state.open}>
+        {result}<br/>
+        <Summary newGame={this.props.newGame} playerScore={this.props.playerScore}/>
       </Dialog>
     );
 
@@ -96,5 +93,6 @@ Submit.propTypes = {
   gameState: React.PropTypes.string.isRequired,
   currentRound: React.PropTypes.string.isRequired,
   newGame: React.PropTypes.string.isRequired,
+  playerScore: React.PropTypes.string.isRequired,
   newQuestion: React.PropTypes.func.isRequired
 };
