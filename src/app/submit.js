@@ -39,7 +39,8 @@ export default class Submit extends React.Component {
     this.props.onHandleGuess();
   }
 
-  componentWillUpdate() {
+  componentWillReceiveProps() {
+    // console.log("currentRound", this.props.currentRound);
     if (this.props.currentRound === 0) {
       this.setState({open: false});
     }
@@ -94,5 +95,6 @@ Submit.propTypes = {
   currentRound: React.PropTypes.string.isRequired,
   newGame: React.PropTypes.string.isRequired,
   playerScore: React.PropTypes.string.isRequired,
-  newQuestion: React.PropTypes.func.isRequired
+  newQuestion: React.PropTypes.func.isRequired,
+  questionCount: React.PropTypes.func.isRequired
 };
