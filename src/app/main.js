@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Header} from './header';
+// import {Header} from './header';
 import Alkali from './cesium.js';
 import {Player} from './player-box.js';
 import {Trivia} from './trivia.js';
@@ -55,7 +55,7 @@ export class Main extends Component {
   render() {
     return (
       <div>
-        <Welcome/>
+        <Welcome newGame={this.newGame} newQuestion={this.newQuestion}/>
         <div className="globe">
           <Alkali
             setPlayerAnswerCoords={this.setPlayerAnswerCoords}
@@ -66,10 +66,10 @@ export class Main extends Component {
             flewHome={this.flewHome}
             />
         </div>
-        <Header
-          newGame={this.newGame}
-          newQuestion={this.newQuestion}
-          />
+        <div className="header">
+          <h1>Wiki Where</h1>
+        </div>
+        {/* <Header/> */}
         <div className="main row">
           <div>
             <Player

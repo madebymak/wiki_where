@@ -33,12 +33,12 @@ class Welcome extends Component {
 
   handleNewGame() {
     this.setState({open: false});
-    // this.props.newGame();
+    this.props.newGame();
   }
 
   render() {
     const standardActions = [
-      <FlatButton label="Cancel" key="1" onTouchTap={this.handleRequestClose}/>
+      <FlatButton label="new game" key="1" onTouchTap={this.handleNewGame}/>
     ];
 
     return (
@@ -54,7 +54,7 @@ class Welcome extends Component {
 }
 
 Welcome.propTypes = {
-  // newGame: React.PropTypes.func.isRequired
+  newGame: React.PropTypes.func.isRequired
 };
 
 export default Welcome;
