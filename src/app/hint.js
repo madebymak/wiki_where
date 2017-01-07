@@ -24,7 +24,7 @@ export default class Hint extends React.Component {
   render() {
     return ( // eslint-disable-next-line
       <MuiThemeProvider muiTheme={muiTheme}>
-        <FlatButton className="hint-next-btn" disabled={this.props.hintCount >= MAX_HINT} label="hint" key="1" onTouchTap={this.handleSubmitHandler}/>
+        <FlatButton className="hint-next-btn" disabled={this.props.hintCount >= MAX_HINT} label={`get hint (${3 - this.props.hintCount} left)`} key="1" onTouchTap={this.handleSubmitHandler}/>
       </MuiThemeProvider>
     );
   }

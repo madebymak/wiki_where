@@ -21,7 +21,7 @@ export class Trivia extends Component {
     return (
       <div>
         <div style={styles.container}>
-          Which City?<br/>
+          Which city is being described?<br/>
           <div>
             <Questions
               hintCount={this.props.stateData.hintCount}
