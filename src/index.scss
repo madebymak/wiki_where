@@ -162,6 +162,20 @@ button {
   };
 }
 
+.social-media-group {
+  margin-top: 10px;
+}
+
+.SocialMediaShareButton {
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  vertical-align: middle;
+  &:hover {
+    cursor: pointer;
+  };
+}
+
 //STARS BACKGROUND
 
 html {
