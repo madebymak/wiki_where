@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Header} from './header';
+// import {Header} from './header';
 import Alkali from './cesium.js';
 import {Player} from './player-box.js';
 import {Trivia} from './trivia.js';
 import Submit from './submit.js';
+import Welcome from './welcome.js';
 
 //eslint-disable-next-line
 import {addHint, newQuestion, setPlayerAnswerCoords, newGame, submitGuess, flewHome} from './actions/stateActions.js';
@@ -40,9 +41,9 @@ export class Main extends Component {
         hintCount: 0,
         score: 0,
         difficulty: 'easy'
-      }
+      },
+      open: true
     };
-
     this.addHint = addHint.bind(this);
     this.newQuestion = newQuestion.bind(this);
     this.setPlayerAnswerCoords = setPlayerAnswerCoords.bind(this);
@@ -54,6 +55,7 @@ export class Main extends Component {
   render() {
     return (
       <div>
+        <Welcome newGame={this.newGame} newQuestion={this.newQuestion}/>
         <div className="globe">
           <Alkali
             setPlayerAnswerCoords={this.setPlayerAnswerCoords}
@@ -64,10 +66,10 @@ export class Main extends Component {
             flewHome={this.flewHome}
             />
         </div>
-        <Header
-          newGame={this.newGame}
-          newQuestion={this.newQuestion}
-          />
+        <div className="header">
+          <h1>Wiki Where</h1>
+        </div>
+        {/* <Header/> */}
         <div className="main row">
           <div>
             <Player

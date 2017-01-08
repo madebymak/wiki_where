@@ -1,5 +1,4 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
@@ -18,13 +17,12 @@ const muiTheme = getMuiTheme({
   }
 });
 
-export default class Summary extends React.Component {
+class Welcome extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      open: false
+      open: true
     };
-    this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleNewGame = this.handleNewGame.bind(this);
   }
@@ -38,26 +36,16 @@ export default class Summary extends React.Component {
     this.props.newGame();
   }
 
-  handleTouchTap() {
-    this.setState({open: true});
-  }
-
   render() {
-    const standardActions = (
-      <FlatButton label="New Game" key="2" onTouchTap={this.handleNewGame}/>
-    );
-
-    const totalPoints = this.props.playerScore + this.props.scoreToAdd;
+    const standardActions = [
+      <FlatButton label="new game" key="1" onTouchTap={this.handleNewGame}/>
+    ];
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="Summary" onTouchTap={this.handleTouchTap}/>
-          <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
-            Total points scored: {totalPoints}<br/>
-            Good job!<br/>
-            Share on social media: <br/>
-            Facebook Twitter Email
+          <Dialog title="Welcome to Jurassic Park" actions={standardActions} modal={false} open={this.state.open}>
+            The quick red fox jumped over the lazy brown dog.
           </Dialog>
         </div>
       </MuiThemeProvider>
@@ -65,8 +53,8 @@ export default class Summary extends React.Component {
   }
 }
 
-Summary.propTypes = {
-  newGame: React.PropTypes.func.isRequired,
-  playerScore: React.PropTypes.number.isRequired,
-  scoreToAdd: React.PropTypes.number.isRequired
+Welcome.propTypes = {
+  newGame: React.PropTypes.func.isRequired
 };
+
+export default Welcome;
