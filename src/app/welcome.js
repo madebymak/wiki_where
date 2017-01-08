@@ -38,14 +38,14 @@ class Welcome extends Component {
 
   render() {
     const standardActions = [
-      <FlatButton label="new game" key="1" onTouchTap={this.handleNewGame}/>
+      <FlatButton label="start" key="1" onTouchTap={this.handleNewGame}/>
     ];
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <Dialog title="Welcome to Jurassic Park" actions={standardActions} modal={false} open={this.state.open}>
-            The quick red fox jumped over the lazy brown dog.
+          <Dialog title="Welcome to Wiki Where" actions={standardActions} modal={false} open={this.state.open}>
+            This game is design to test your knowledge about major cities and their geographical location. There will be 5 rounds of trivia with scoring based on how close you are to the city center and how many hints are used.
           </Dialog>
         </div>
       </MuiThemeProvider>
