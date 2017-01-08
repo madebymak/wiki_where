@@ -80,7 +80,7 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
       noSpaceFollow = sentences[i + 1][0] !== ' ';
       lastAbbr = Boolean(outputString.substr(outputString.length - 4).match(/(.\s[A-Z][.])|(\s[A-Z][a-z][.])/));
     }
-    console.log("noSpaceFollow:", noSpaceFollow, "lastAbbr", lastAbbr, sentences[i], i);
+    // console.log("noSpaceFollow:", noSpaceFollow, "lastAbbr", lastAbbr, sentences[i], i);
     if (lastAbbr || noSpaceFollow) {
       moreSentence -= 1;
     }
