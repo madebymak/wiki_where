@@ -5,6 +5,11 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {SocialIcon} from 'react-social-icons';
+import {
+  ShareButtons,
+  generateShareIcon
+} from 'react-share';
 
 const styles = {
   container: {
@@ -17,6 +22,14 @@ const muiTheme = getMuiTheme({
     accent1Color: deepOrange500
   }
 });
+
+const {
+  FacebookShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
 
 export default class Summary extends React.Component {
   constructor(props, context) {
@@ -48,6 +61,10 @@ export default class Summary extends React.Component {
     );
 
     const totalPoints = this.props.playerScore + this.props.scoreToAdd;
+    const shareUrl = 'http://0.0.0.0:3000/';
+    const title = `I played WikiWhere and got ${totalPoints} points, try to beat me!`;
+    const description = 'WikiWhere is a geography trivia game that puts your knowledge about the world to the test.';
+    const hashtags = ['WikiWhere'];
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -56,8 +73,16 @@ export default class Summary extends React.Component {
           <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
             Total points scored: {totalPoints}<br/>
             Good job!<br/>
-            Share on social media: <br/>
-            Facebook Twitter Email
+            Share your score? <br/>
+            <div className="social-media-group">
+              <FacebookShareButton url={shareUrl} title={title} description={description}>
+                <FacebookIcon round/>
+              </FacebookShareButton>
+              <TwitterShareButton url={shareUrl} title={title} hashtags={hashtags}>
+                <TwitterIcon round/>
+              </TwitterShareButton>
+              <SocialIcon url={`mailto:?to=&subject=${title.replace(' ', '%20')}&body=${description.replace(' ', '%20')}`} network="email" style={{height: 64, width: 64}}/>
+            </div>
           </Dialog>
         </div>
       </MuiThemeProvider>
