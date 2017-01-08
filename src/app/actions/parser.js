@@ -18,7 +18,6 @@ export default function parseWikiResponse(responseObj) {
   feasiblePara = feasiblePara.filter(element => {
     return censoredOnly(element);
   });
-  console.log("!!!!!!!!!", feasiblePara[32]);
   return _.sample(feasiblePara, 3);
 }
 
@@ -76,10 +75,11 @@ function wholeSentenceMin(text, minLength = MIN_LENGTH) {
   while (moreSentence < 2) {
     addNext(i);
     let noSpaceFollow = false;
+    let lastAbbr = false;
     if (sentences[i + 1]) {
       noSpaceFollow = sentences[i + 1][0] !== ' ';
+      lastAbbr = Boolean(outputString.substr(outputString.length - 4).match(/(.\s[A-Z][.])|(\s[A-Z][a-z][.])/));
     }
-    const lastAbbr = Boolean(outputString.substr(outputString.length - 4).match(/(.\s[A-Z][.])|(\s[A-Z][a-z][.])/));
     // console.log("noSpaceFollow:", noSpaceFollow, "lastAbbr", lastAbbr, sentences[i], i);
     if (lastAbbr || noSpaceFollow) {
       moreSentence -= 1;
