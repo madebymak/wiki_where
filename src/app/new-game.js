@@ -51,7 +51,7 @@ class New extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="new&nbsp;game" onTouchTap={this.handleTouchTap}/>
+          <RaisedButton backgroundColor="#CCCCCC" label="new&nbsp;game" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Are you sure you want to start a new game?" actions={standardActions} modal={false} open={this.state.open}>
             test
           </Dialog>

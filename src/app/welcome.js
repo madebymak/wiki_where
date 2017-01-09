@@ -38,7 +38,7 @@ class Welcome extends Component {
 
   render() {
     const standardActions = [
-      <FlatButton label="start" key="1" onTouchTap={this.handleNewGame}/>
+      <FlatButton backgroundColor="#CCCCCC" label="start" key="1" onTouchTap={this.handleNewGame}/>
     ];
 
     return (

@@ -78,7 +78,7 @@ export default class Submit extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton label="submit" disabled={this.props.gameState !== 'answering'} primary={this.props.gameState === 'answering'} onTouchTap={this.handleTouchTap}/>
+          <RaisedButton label="submit" disabled={this.props.gameState !== 'answering'} onTouchTap={this.handleTouchTap}/>
             {roundCheck ? roundScore : finalRound}
         </div>
       </MuiThemeProvider>

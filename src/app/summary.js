@@ -57,7 +57,7 @@ export default class Summary extends React.Component {
 
   render() {
     const standardActions = (
-      <FlatButton label="New Game" key="2" onTouchTap={this.handleNewGame}/>
+      <FlatButton backgroundColor="#CCCCCC" label="New Game" key="2" onTouchTap={this.handleNewGame}/>
     );
 
     const totalPoints = this.props.playerScore + this.props.scoreToAdd;
