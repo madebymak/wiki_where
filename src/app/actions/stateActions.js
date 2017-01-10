@@ -121,6 +121,10 @@ export function newGame(difficulty = 'easy') {
   });
 }
 
+export function reset() {
+
+}
+
 export function submitGuess() {
   if (this.state.data.gameState !== 'answering') {
     console.warn("You can't submit answers when you have not placed your answer");
