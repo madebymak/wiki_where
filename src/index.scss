@@ -83,6 +83,12 @@ h1 {
   color: white;
 }
 
+.material-icons {
+  font-size: 50px;
+  position: relative;
+  top: 5px;
+}
+
 .globe {
   display: block;
   position: absolute;;;
@@ -95,14 +101,16 @@ h1 {
 }
 
 .header {
+  align-content: center;
   background-color: transparent;
   border: 0px solid red;
   color: white;
   font-family: serif;
-  font-size: 50px;
+  font-size: 56px;
+  font-weight: lighter;
   padding-left: 5px;
   position: relative;
-  width: 280px;
+  width: 320px;
   z-index: 2
 }
 
