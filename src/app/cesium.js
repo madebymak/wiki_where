@@ -27,8 +27,8 @@ export default class Alkali extends React.Component {
     this.viewer = new Cesium.Viewer('cesiumContainer', cesiumViewerOptions);
 
     const scene = this.viewer.scene;
-    scene.screenSpaceCameraController.minimumZoomDistance = 2000.0;
-    scene.screenSpaceCameraController.maximumZoomDistance = 30000000.0;
+    scene.screenSpaceCameraController.minimumZoomDistance = 10000.0;
+    scene.screenSpaceCameraController.maximumZoomDistance = 25000000.0;
 
     const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
 
