@@ -42,10 +42,12 @@ h1 {
   border: 0px solid blue;
   border-radius: 8px;
   color: white;
+  font-size: 16px;
   max-height: 750px;
   margin: 10px;
   position: relative;
-  width: 310px;
+  // width: 310px;
+  width: 30%;
   z-index: 3;
   // animation-name: dropHeader;
   // animation-iteration-count: 1;
@@ -95,8 +97,12 @@ h1 {
 .header {
   background-color: transparent;
   border: 1px solid transparent;
+  color: white;
+  font-family: serif;
+  font-size: 40px;
+  padding-left: 5px;
   position: relative;
-  width: 20%;
+  width: 280px;
   z-index: 2
 }
 
@@ -141,27 +147,14 @@ h1 {
 
 .btn-group{
   border: 0px solid green;
-  margin-bottom: 15px;
+  // padding: 5px;
+  margin: 5px 0px 10px 0px;
   width: 100%;
 }
 
 .hint-next-btn {
   background-color: white !important;
   margin-left: 25% !important;
-}
-
-.social-media-group {
-  margin-top: 10px;
-}
-
-.SocialMediaShareButton {
-  display: inline-block;
-  margin-right: 10px;
-  text-align: center;
-  vertical-align: middle;
-  &:hover {
-    cursor: pointer;
-  };
 }
 
 .social-media-group {

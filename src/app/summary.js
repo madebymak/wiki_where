@@ -65,7 +65,6 @@ export default class Summary extends React.Component {
     const title = `I played WikiWhere and got ${totalPoints} points, try to beat me!`;
     const description = 'WikiWhere is a geography trivia game that puts your knowledge about the world to the test.';
     const hashtags = ['WikiWhere'];
-
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
@@ -73,7 +72,7 @@ export default class Summary extends React.Component {
           <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
             Total points scored: {totalPoints}<br/>
             Good job!<br/>
-            Share your score? <br/>
+            Share your score: <br/>
             <div className="social-media-group">
               <FacebookShareButton url={shareUrl} title={title} description={description}>
                 <FacebookIcon round/>

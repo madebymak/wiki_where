@@ -67,10 +67,9 @@ export class Main extends Component {
             flewHome={this.flewHome}
             />
         </div>
-        {/*
-          <div className="header">
-            <h1>Wiki Where</h1>
-          </div>*/
+        {/* <div className="header">
+          <h1>Wiki Where</h1>
+        </div>*/}
         }
         <Header reset={this.reset}/>
         <div className="main row">
