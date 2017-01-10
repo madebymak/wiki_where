@@ -7,7 +7,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <div className="header">
-          <h1>Wiki Where</h1>
+          Wiki Where
         </div>
         <div className="reset-btn">
           <Reset reset={this.props.reset}/>
