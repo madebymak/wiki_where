@@ -122,7 +122,13 @@ export function newGame(difficulty = 'easy') {
 }
 
 export function reset() {
-
+  this.setState({
+    data: update(this.state.data,
+      {
+        flyHomeSwitch: {$set: true},
+        gameState: {$set: 'questioning'}
+      })
+  });
 }
 
 export function submitGuess() {
