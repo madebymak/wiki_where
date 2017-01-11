@@ -6,9 +6,6 @@ const styles = {
   container: {
     border: '0px solid red',
     borderRadius: '6px',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // minWidth: '250px',
     maxHeight: '550px',
     padding: '0px 10px',
     overflowX: 'hidden',
