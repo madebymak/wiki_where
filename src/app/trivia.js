@@ -6,7 +6,7 @@ const styles = {
   container: {
     border: '0px solid red',
     borderRadius: '6px',
-    maxHeight: '550px',
+    maxHeight: '540px',
     padding: '0px 10px',
     overflowX: 'hidden',
     overflowY: 'auto'
@@ -17,9 +17,9 @@ export class Trivia extends Component {
   render() {
     return (
       <div>
-        {/* <div>
+        <div style={styles.container}>
           Which city is being described?
-        </div> */}
+        </div>
         <div style={styles.container}>
           <div>
             <Questions
