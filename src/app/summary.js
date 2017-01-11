@@ -70,17 +70,26 @@ export default class Summary extends React.Component {
         <div style={styles.container}>
           <RaisedButton label="Summary" onTouchTap={this.handleTouchTap}/>
           <Dialog title="Final Score" actions={standardActions} modal={false} open={this.state.open}>
-            Total points scored: {totalPoints}<br/>
-            Good job!<br/>
-            Share your score: <br/>
-            <div className="social-media-group">
-              <FacebookShareButton url={shareUrl} title={title} description={description}>
-                <FacebookIcon round/>
-              </FacebookShareButton>
-              <TwitterShareButton url={shareUrl} title={title} hashtags={hashtags}>
-                <TwitterIcon round/>
-              </TwitterShareButton>
-              <SocialIcon url={`mailto:?to=&subject=${title.replace(' ', '%20')}&body=${description.replace(' ', '%20')}`} network="email" style={{height: 64, width: 64}}/>
+            <div className="container border-test">
+              <div className="row>">
+                <div className="col-sm-4 border-test">
+                  <i className="material-icons summary-icon">public</i>
+                </div>
+                <div className="col-sm-8 border-test">
+                  Good Job! You scored {totalPoints} points on 5 rounds of gameplay.<br/>
+                  Share your score on social media: <br/>
+                  <div className="social-media-group">
+                    <FacebookShareButton url={shareUrl} title={title} description={description}>
+                      <FacebookIcon round/>
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl} title={title} hashtags={hashtags}>
+                      <TwitterIcon round/>
+                    </TwitterShareButton>
+                    <SocialIcon url={`mailto:?to=&subject=${title.replace(' ', '%20')}&body=${description.replace(' ', '%20')}`} network="email" style={{height: 64, width: 64}}/>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </Dialog>
         </div>
